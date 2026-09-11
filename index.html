@@ -1,0 +1,2203 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moobi Eco - Software & Digital Solutions | Ekosistem E-Commerce Indonesia</title>
+  <meta name="description" content="Moobi Eco - Ekosistem dan suite solusi operasional e-commerce, integrasi marketplace multi-channel, CRM, AI chatbot 24/7, logistik dan invoice instan.">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN with plugins -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#0d6efd',
+              600: '#0057cd',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#071330',
+            },
+            primary: '#0057cd',
+            'primary-container': '#0d6efd',
+            secondary: '#7e37c7',
+            'secondary-container': '#b36ffe',
+            tertiary: '#ba142c',
+            'tertiary-container': '#de3341',
+            surface: '#faf8ff',
+            'surface-container-low': '#f2f3ff',
+            'surface-container': '#eaedff',
+            'surface-container-high': '#e2e7ff',
+            'surface-container-lowest': '#ffffff',
+            'on-surface': '#131b2e',
+            'on-surface-variant': '#424655',
+            'outline-variant': '#c2c6d8',
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #thermalLabelModal, #thermalLabelModal * {
+        visibility: visible;
+      }
+      #thermalLabelModal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: white;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased selection:bg-primary-container selection:text-white flex flex-col min-h-screen">
+
+  <!-- ================= TOP NOTIFICATION / QUICK SWITCHER BAR ================= -->
+  <div class="bg-gradient-to-r from-[#071330] via-[#0057cd] to-[#7e37c7] text-white text-xs py-2 px-4 flex items-center justify-between sticky top-0 z-[60] shadow-sm">
+    <div class="max-w-7xl mx-auto w-full flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5">
+        <span class="flex h-2 w-2 relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+        </span>
+        <span class="font-semibold text-[11px] sm:text-xs tracking-wide">
+          <strong class="text-emerald-300">MOOBI ECO:</strong> Software &amp; Digital Solutions Ecosystem (Sesuai Desain &amp; Arsitektur)
+        </span>
+      </div>
+
+      <!-- Quick View Switcher: Public Website Pages vs Workspace Demo -->
+      <div class="flex items-center gap-1.5 bg-white/10 p-1 rounded-full border border-white/20">
+        <button id="btnTopWeb" onclick="navigateToPage('home')" class="px-3 py-1 rounded-full text-[11px] font-bold transition-all bg-white text-[#071330] shadow-sm flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[14px]">web</span> Website &amp; Profil
+        </button>
+        <button id="btnTopWorkspace" onclick="navigateToWorkspace()" class="px-3 py-1 rounded-full text-[11px] font-bold transition-all text-white hover:bg-white/20 flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[14px]">apps</span> Buka Workspace Demo
+          <span class="bg-[#f97316] text-white text-[9px] px-1.5 py-0.2 rounded-full uppercase">Interactive</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MAIN HEADER & NAVIGATION (FIGMA DESIGN TOKENS) ================= -->
+  <header class="sticky top-[37px] z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-[70px] flex items-center justify-between">
+      
+      <!-- Brand Logo matching Screen 1/2/3/4/5 -->
+      <a href="javascript:void(0)" onclick="navigateToPage('home')" class="flex items-center gap-2.5 group">
+        <img alt="Moobi Logo" class="h-8 w-auto object-contain transition-transform group-hover:scale-105" src="moobi ecosystem/assets/moobi.png" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuAkNBAEahhJWRB9osfjGSndVX-G01pudMoy2OJ-PTpBJNt9paiW65pRa1bpffQ1O8AeCiZGKj3FjP7SLM02GikiiZcAuJm3xvMk0_4kcfIY81p5AiEnLMxblzlH48iSaYCmbDSov-Kq83DLNutRlmS6hO_bZ-wspzpvWS7yLJP_rV60R3xigJI6IwnGMY296RPn_pW_wiqK_nS9tHFnhLMf_T_7Fw-Tej4KFOyOce8mXLcF7W200iiznJFHS2YlBOMHFw'">
+        <div class="flex flex-col">
+          <div class="flex items-center gap-1 font-bold text-[18px] leading-tight">
+            <span class="text-[#1e293b]">Moobi</span>
+            <span class="text-primary-container font-extrabold">Eco</span>
+          </div>
+          <span class="text-[9px] uppercase font-bold tracking-wider text-slate-500">SOFTWARE &amp; DIGITAL SOLUTIONS</span>
+        </div>
+      </a>
+
+      <!-- Page Navigation (Home, Profile, Product, Blog, Contact) -->
+      <nav id="mainNav" class="hidden md:flex items-center space-x-2 text-sm font-medium">
+        <button id="nav-home" onclick="navigateToPage('home')" class="page-nav-link px-4 py-1.5 rounded-xl bg-primary/10 text-primary font-semibold transition-colors">Home</button>
+        <button id="nav-profile" onclick="navigateToPage('profile')" class="page-nav-link px-3.5 py-1.5 text-slate-600 hover:text-primary transition-colors font-medium">Profile</button>
+        <button id="nav-product" onclick="navigateToPage('product')" class="page-nav-link px-3.5 py-1.5 text-slate-600 hover:text-primary transition-colors font-medium">Product</button>
+        <button id="nav-blog" onclick="navigateToPage('blog')" class="page-nav-link px-3.5 py-1.5 text-slate-600 hover:text-primary transition-colors font-medium">Blog</button>
+        <button id="nav-contact" onclick="navigateToPage('contact')" class="page-nav-link px-3.5 py-1.5 text-slate-600 hover:text-primary transition-colors font-medium">Contact</button>
+      </nav>
+
+      <!-- Workspace Sub-Nav (Visible when Workspace Mode Active) -->
+      <nav id="workspaceNav" class="hidden items-center gap-1 text-xs font-semibold overflow-x-auto py-1">
+        <button onclick="switchWorkspaceModule('agenticInvoice')" class="ws-tab-btn px-3 py-1.5 rounded-lg bg-primary text-white shadow-sm flex items-center gap-1.5 whitespace-nowrap font-bold" data-module="agenticInvoice">
+          <span class="material-symbols-outlined text-[16px]">receipt_long</span> 1. Agentic Invoice
+        </button>
+        <button onclick="switchWorkspaceModule('chatbotCs')" class="ws-tab-btn px-3 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 flex items-center gap-1.5 whitespace-nowrap font-semibold" data-module="chatbotCs">
+          <span class="material-symbols-outlined text-[16px]">smart_toy</span> 2. Chatbot AI 24/7
+        </button>
+        <button onclick="switchWorkspaceModule('smartCrm')" class="ws-tab-btn px-3 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 flex items-center gap-1.5 whitespace-nowrap font-semibold" data-module="smartCrm">
+          <span class="material-symbols-outlined text-[16px]">groups</span> 3. Smart CRM
+        </button>
+        <button onclick="switchWorkspaceModule('logisticsShip')" class="ws-tab-btn px-3 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 flex items-center gap-1.5 whitespace-nowrap font-semibold" data-module="logisticsShip">
+          <span class="material-symbols-outlined text-[16px]">local_shipping</span> 4. Multi-Kurir
+        </button>
+        <button onclick="switchWorkspaceModule('channelSync')" class="ws-tab-btn px-3 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 flex items-center gap-1.5 whitespace-nowrap font-semibold" data-module="channelSync">
+          <span class="material-symbols-outlined text-[16px]">sync_alt</span> 5. Multi-Channel
+        </button>
+        <button onclick="switchWorkspaceModule('analyticsFinance')" class="ws-tab-btn px-3 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 flex items-center gap-1.5 whitespace-nowrap font-semibold" data-module="analyticsFinance">
+          <span class="material-symbols-outlined text-[16px]">monitoring</span> 6. Analytics
+        </button>
+      </nav>
+
+      <!-- Action Button matching Screen Header -->
+      <div class="flex items-center gap-2.5">
+        <button onclick="navigateToPage('contact')" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-primary-container hover:bg-primary shadow-md shadow-primary/20 transition-all whitespace-nowrap">
+          Free Consultations
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MASTER MAIN CONTAINER ================= -->
+  <main class="flex-grow w-full">
+
+    <!-- ========================================================================= -->
+    <!-- PAGE 1: BERANDA DESKTOP (ELEVATED METRICS) - EXACT IMAGE 1                -->
+    <!-- ========================================================================= -->
+    <div id="page-home" class="page-container w-full">
+      
+      <!-- HERO SECTION -->
+      <section class="relative w-full overflow-hidden bg-surface-container-lowest pt-8 pb-16 border-b border-surface-container">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center min-h-[560px]">
+            
+            <!-- Left Copy -->
+            <div class="lg:col-span-6 flex flex-col gap-5 z-10 py-4">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#fef3eb] border border-[#fed7aa] w-fit shadow-sm">
+                <span class="material-symbols-outlined text-[16px] text-[#f97316]">code</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-[#ea580c]">SOLUSI &amp; EKOSISTEM OPERASIONAL E-COMMERCE TERPADU</span>
+              </div>
+              
+              <div class="flex flex-col gap-2">
+                <h1 class="text-4xl sm:text-5xl lg:text-[54px] font-extrabold text-slate-900 tracking-tight leading-[1.08]">
+                  Solusi Kebutuhan <span class="text-primary-container">Bisnis Online &amp; E-Commerce</span>
+                </h1>
+                <p class="text-base sm:text-lg text-slate-600 max-w-xl mt-1 leading-relaxed">
+                  Otomasi seluruh operasional bisnis online Anda: integrasi marketplace, invoice instan, manajemen stok multi-channel, ekspedisi pengiriman, dan chatbot CRM cerdas dalam satu ekosistem Moobi.
+                </p>
+              </div>
+
+              <!-- Buttons -->
+              <div class="flex flex-wrap items-center gap-3.5 pt-2">
+                <button onclick="navigateToPage('product')" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-bold text-sm text-white bg-primary hover:bg-primary-container active:scale-95 transition-all shadow-lg shadow-primary/20">
+                  <span class="material-symbols-outlined text-[20px]">terminal</span>
+                  <span>Mulai Bangun Aplikasi / Web</span>
+                  <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                </button>
+                <a href="https://wa.me/6281299887720" target="_blank" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm text-slate-800 bg-surface-container-lowest hover:bg-surface-container shadow-sm transition-all border border-slate-300">
+                  <span class="material-symbols-outlined text-[20px] text-green-600">chat</span>
+                  <span>Hubungi Kami</span>
+                </a>
+              </div>
+
+              <!-- Badges -->
+              <div class="flex flex-wrap items-center gap-3 pt-2">
+                <div class="flex -space-x-2">
+                  <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white text-[10px] font-bold shadow-sm">WEB</span>
+                  <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary-container text-white text-[10px] font-bold shadow-sm">APP</span>
+                  <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-secondary text-white text-[10px] font-bold shadow-sm">ERP</span>
+                  <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-surface-container-high text-primary text-[10px] font-bold shadow-sm">API</span>
+                </div>
+                <div class="flex items-center gap-1.5 text-slate-600 text-xs font-medium">
+                  <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+                  <span>Terpercaya oleh <strong class="text-slate-900 font-bold">500+ sistem &amp; bisnis aktif</strong> (Fintech, Retail, Logistik &amp; SaaS)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Visual with Solid Circle Accent & Character -->
+            <div class="lg:col-span-6 relative w-full h-full min-h-[500px] flex items-end justify-center">
+              <div class="absolute left-1/2 -translate-x-1/2 top-10 w-[320px] h-[320px] lg:w-[380px] lg:h-[380px] rounded-full bg-primary z-0 shadow-2xl shadow-primary/30"></div>
+              
+              <!-- Character Image -->
+              <div class="relative z-10 w-full flex items-end justify-center">
+                <img alt="Moobi Specialist" class="w-auto h-[440px] lg:h-[490px] object-contain drop-shadow-2xl z-10 relative pointer-events-none -mb-2" src="moobi ecosystem/assets/assets pose1.png" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuADVwpEZ-TYbqLqGxYqrDycAWZ7Wm3S8tjs-1aZGcR5sOKy8whE7o4c9ZzGU1NcMmGrcKNNmjqOpHVgK5Su4eplBZV74K145yEH3kcxiPCUalR0M72DlteNKk85IUgZPSuSspyQszp4p4jVCrkJd3S4TSUi7L-z_w8mlbRrvHh6w3k5hehNkmzobadxLz4f2VxGkvTWp1yxxAoFxJwQ5p6mdaReivHJc2hPA-p3LVNSW2nV9ZRo1NEcAK4LLfNqmfV_rQ'">
+              </div>
+
+              <!-- Floating Card 1: Top Right -->
+              <div class="absolute top-6 right-0 z-30 px-4 py-2.5 rounded-2xl bg-white shadow-xl border border-slate-100 flex flex-col gap-0.5">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-green-500 inline-block"></span>
+                  <span class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">PROJECT LIVE FEED</span>
+                  <span class="px-2 py-0.5 rounded-full bg-[#fef3eb] text-green-600 text-[10px] font-bold">Active</span>
+                </div>
+                <div class="text-[13px] font-bold text-slate-900 leading-tight mt-0.5">Web &amp; Mobile App • Selesai On-Time</div>
+              </div>
+
+              <!-- Floating Card 2: Middle Left -->
+              <div class="absolute top-1/3 -left-4 z-30 p-3 px-3.5 rounded-2xl bg-white shadow-xl border border-slate-100 flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                  <span class="material-symbols-outlined text-[18px]">devices</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[10px] font-bold text-primary uppercase tracking-wider">ENTERPRISE READY</span>
+                  <span class="text-[13px] font-bold text-slate-900 leading-tight">Modern Stack &amp; Scalable API</span>
+                </div>
+              </div>
+
+              <!-- Floating Card 3: Bottom Right -->
+              <div class="absolute bottom-6 right-2 z-30 p-3 px-3.5 rounded-2xl bg-white shadow-xl border border-slate-100 flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-primary text-white flex items-center justify-center shadow-md">
+                  <span class="material-symbols-outlined text-[20px]">verified</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[14px] font-bold text-slate-900 leading-tight">250+ Proyek Selesai</span>
+                  <span class="text-[11px] text-slate-500">Klien Puas &amp; Terverifikasi</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 4-COLUMN METRIC IMPACT BANNER -->
+      <section class="w-full bg-[#f0f4ff] py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            
+            <div class="bg-white rounded-2xl border border-blue-100/90 p-5 shadow-md shadow-blue-900/5 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="text-3xl font-extrabold text-blue-600 tracking-tight">500+</span>
+                <div class="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shadow-sm">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><rect height="14" rx="2" width="20" x="2" y="3"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-slate-900 mt-3 mb-1">Proyek Selesai</h3>
+                <p class="text-xs text-slate-500 font-medium leading-relaxed">Membantu UMKM, startup, &amp; enterprise di berbagai sektor</p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-blue-100/90 p-5 shadow-md shadow-blue-900/5 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="text-3xl font-extrabold text-blue-600 tracking-tight">15+</span>
+                <div class="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shadow-sm">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><rect height="18" rx="2" width="16" x="4" y="3"></rect><line x1="9" x2="9.01" y1="8" y2="8"></line><line x1="15" x2="15.01" y1="8" y2="8"></line><line x1="9" x2="9.01" y1="12" y2="12"></line><line x1="15" x2="15.01" y1="12" y2="12"></line><line x1="9" x2="9.01" y1="16" y2="16"></line><line x1="15" x2="15.01" y1="16" y2="16"></line></svg>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-slate-900 mt-3 mb-1">Sektor Industri</h3>
+                <p class="text-xs text-slate-500 font-medium leading-relaxed">Retail, Fintech, Logistik, Kesehatan, Manufaktur &amp; SaaS</p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-blue-100/90 p-5 shadow-md shadow-blue-900/5 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="text-3xl font-extrabold text-blue-600 tracking-tight">98%</span>
+                <div class="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shadow-sm">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-slate-900 mt-3 mb-1">Tingkat Kepuasan</h3>
+                <p class="text-xs text-slate-500 font-medium leading-relaxed">Klien aktif &amp; repeat order dengan SLA terjamin</p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-blue-100/90 p-5 shadow-md shadow-blue-900/5 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="text-3xl font-extrabold text-blue-600 tracking-tight">24/7</span>
+                <div class="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shadow-sm">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-slate-900 mt-3 mb-1">Dukungan Teknis</h3>
+                <p class="text-xs text-slate-500 font-medium leading-relaxed">Tim teknis standby siap penanganan cepat &amp; bug-free SLA</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 PILAR SOLUSI EKOSISTEM MOOBI -->
+      <section class="w-full py-16 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+            <div class="max-w-2xl">
+              <div class="inline-flex items-center gap-1.5 text-xs font-bold text-primary uppercase tracking-wider mb-2">
+                <span class="material-symbols-outlined text-[16px]">storefront</span>
+                <span>Ekosistem E-Commerce All-in-One</span>
+              </div>
+              <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Solusi Lengkap Kebutuhan Bisnis Onlinemu</h2>
+              <p class="text-slate-600 text-sm mt-2">Moobi menyediakan ekosistem terpadu untuk mengelola seluruh aspek operasional toko online Anda.</p>
+            </div>
+            <button onclick="navigateToPage('product')" class="inline-flex items-center gap-1.5 text-primary font-bold text-sm hover:underline">
+              <span>Pelajari Seluruh Solusi Kami</span>
+              <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </button>
+          </div>
+
+          <!-- 6 Pillars Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Pilar 01 -->
+            <div class="p-6 rounded-2xl bg-surface-container-lowest border border-slate-200/90 shadow-md hover:shadow-xl transition-all flex flex-col justify-between group">
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center shadow-md shadow-primary/20 group-hover:scale-105 transition-transform">
+                    <span class="material-symbols-outlined text-[24px]">shopping_cart</span>
+                  </div>
+                  <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-extrabold uppercase tracking-wider">Pilar 01</span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">Marketplace &amp; Toko Online</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">Integrasi multi-channel, sinkronisasi katalog produk terpusat, website toko mandiri berkinerja tinggi serta checkout kilat.</p>
+              </div>
+              <div class="pt-4 mt-5 border-t border-surface-container space-y-2 text-xs font-medium text-slate-700">
+                <div class="flex items-center gap-2"><span class="material-symbols-outlined text-green-600 text-[18px]">check_circle</span><span>Katalog Terpusat &amp; Web Store Mandiri</span></div>
+                <div class="flex items-center gap-2"><span class="material-symbols-outlined text-green-600 text-[18px]">check_circle</span><span>Sinkronisasi Multi-Channel Instan</span></div>
+              </div>
+            </div>
+
+            <!-- Pilar 02 -->
+            <div class="p-6 rounded-2xl bg-surface-container-lowest border border-slate-200/90 shadow-md hover:shadow-xl transition-all flex flex-col justify-between group">
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="w-12 h-12 rounded-xl bg-emerald-500 text-white flex items-center justify-center shadow-md shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+                    <span class="material-symbols-outlined text-[24px]">description</span>
+                  </div>
+                  <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 text-[10px] font-extrabold uppercase tracking-wider">Pilar 02</span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">Invoice &amp; Penagihan Otomatis</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">Penerbitan invoicing instan via WhatsApp/Email, pengingat jatuh tempo otomatis, rekonsiliasi kas bank real-time, dan laporan laba bersih.</p>
+              </div>
+              <div class="pt-4 mt-5 border-t border-surface-container space-y-2 text-xs font-medium text-slate-700">
+                <div class="flex items-center gap-2"><span class="material-symbols-outlined text-green-600 text-[18px]">check_circle</span><span>Invoicing Instan &amp; QRIS/VA Otomatis</span></div>
+                <div class="flex items-center gap-2"><span class="material-symbols-outlined text-green-600 text-[18px]">check_circle</span><span>Pengingat Bayar &amp; Rekonsiliasi Kas</span></div>
+              </div>
+            </div>
+
+            <!-- Pilar 03 Highlight -->
+            <div class="p-6 rounded-2xl bg-gradient-to-r from-primary to-primary-container text-white border border-primary shadow-xl hover:shadow-2xl transition-all flex flex-col justify-between group relative overflow-hidden">
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="w-12 h-12 rounded-xl bg-white/20 text-white flex items-center justify-center backdrop-blur shadow-md group-hover:scale-105 transition-transform">
+                    <span class="material-symbols-outlined text-[24px]">groups</span>
+                  </div>
+                  <span class="px-3 py-1 rounded-full bg-[#f97316] text-white text-[10px] font-extrabold uppercase tracking-wider shadow-sm">Pilar 03 • Highlight</span>
+                </div>
+                <h3 class="text-lg font-bold text-white">CRM &amp; Manajemen Pelanggan</h3>
+                <p class="text-xs text-white/90 leading-relaxed">Segmentasi pembeli loyal vs churn, riwayat transaksi 360°, program loyalty &amp; point reward, serta optimasi Customer Lifetime Value (CLV).</p>
+              </div>
+              <div class="pt-4 mt-5 border-t border-white/20 space-y-2 text-xs font-medium text-white">
+                <div class="flex items-center gap-2"><span class="material-symbols-outlined text-emerald-400 text-[18px]">check_circle</span><span>Segmentasi Pembeli &amp; Riwayat Transaksi</span></div>
+                <div class="flex items-center gap-2"><span class="material-symbols-outlined text-emerald-400 text-[18px]">check_circle</span><span>Program Loyalty &amp; Optimasi CLV</span></div>
+              </div>
+            </div>
+
+            <!-- Pilar 04 -->
+            <div class="p-6 rounded-2xl bg-surface-container-lowest border border-slate-200/90 shadow-md hover:shadow-xl transition-all flex flex-col justify-between group">
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="w-12 h-12 rounded-xl bg-[#f97316] text-white flex items-center justify-center shadow-md shadow-orange-500/20 group-hover:scale-105 transition-transform">
+                    <span class="material-symbols-outlined text-[24px]">sync_alt</span>
+                  </div>
+                  <span class="px-3 py-1 rounded-full bg-[#f97316]/10 text-[#f97316] text-[10px] font-extrabold uppercase tracking-wider">Pilar 04</span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">Pengiriman &amp; Logistik Terpadu</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">Koneksi ekspedisi (JNE, SiCepat, J&amp;T, GoSend, Grab), cetak resi massal thermal A6, tracking otomatis, dan request pick up instan.</p>
+              </div>
+              <div class="pt-4 mt-5 border-t border-surface-container space-y-2 text-xs font-medium text-slate-700">
+                <div class="flex items-center gap-2"><span class="material-symbols-outlined text-green-600 text-[18px]">check_circle</span><span>Koneksi Multi-Kurir JNE/SiCepat/J&amp;T</span></div>
+                <div class="flex items-center gap-2"><span class="material-symbols-outlined text-green-600 text-[18px]">check_circle</span><span>Pick Up Otomatis &amp; Resi Massal</span></div>
+              </div>
+            </div>
+
+            <!-- Pilar 05 -->
+            <div class="p-6 rounded-2xl bg-surface-container-lowest border border-slate-200/90 shadow-md hover:shadow-xl transition-all flex flex-col justify-between group">
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center shadow-md shadow-primary/20 group-hover:scale-105 transition-transform">
+                    <span class="material-symbols-outlined text-[24px]">view_sidebar</span>
+                  </div>
+                  <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-extrabold uppercase tracking-wider">Pilar 05</span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">Manajemen Marketplace Terpusat</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">Stok tersinkronisasi otomatis antar toko (anti-overselling), pembaruan harga massal, dan pemrosesan pesanan satu pintu.</p>
+              </div>
+              <div class="pt-4 mt-5 border-t border-surface-container space-y-2 text-xs font-medium text-slate-700">
+                <div class="flex items-center gap-2"><span class="material-symbols-outlined text-green-600 text-[18px]">check_circle</span><span>Stok Tersinkronisasi Otomatis Antar Toko</span></div>
+                <div class="flex items-center gap-2"><span class="material-symbols-outlined text-green-600 text-[18px]">check_circle</span><span>Manajemen Pesanan Satu Pintu</span></div>
+              </div>
+            </div>
+
+            <!-- Pilar 06 -->
+            <div class="p-6 rounded-2xl bg-surface-container-lowest border border-slate-200/90 shadow-md hover:shadow-xl transition-all flex flex-col justify-between group">
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="w-12 h-12 rounded-xl bg-secondary text-white flex items-center justify-center shadow-md shadow-secondary/20 group-hover:scale-105 transition-transform">
+                    <span class="material-symbols-outlined text-[24px]">chat</span>
+                  </div>
+                  <span class="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-[10px] font-extrabold uppercase tracking-wider">Pilar 06</span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">Chatbot CRM Cerdas AI</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">Auto-reply WhatsApp bertenaga AI, rekomendasi produk personal, panduan pembayaran instan, dan closing penjualan otomatis 24/7.</p>
+              </div>
+              <div class="pt-4 mt-5 border-t border-surface-container space-y-2 text-xs font-medium text-slate-700">
+                <div class="flex items-center gap-2"><span class="material-symbols-outlined text-green-600 text-[18px]">check_circle</span><span>Auto-Reply WhatsApp AI 24/7</span></div>
+                <div class="flex items-center gap-2"><span class="material-symbols-outlined text-green-600 text-[18px]">check_circle</span><span>Closing &amp; Rekomendasi Barang Otomatis</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: SHOWCASE KARYA DIGITAL & STUDI KASUS -->
+      <section class="w-full py-16 bg-surface-container-low">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-4 mb-10">
+            <div>
+              <div class="inline-flex items-center gap-1.5 text-secondary text-xs font-bold uppercase tracking-wider mb-2">
+                <span class="material-symbols-outlined text-[16px]">folder_special</span>
+                <span>PORTOFOLIO &amp; STUDI KASUS UNGGULAN</span>
+              </div>
+              <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Karya Digital &amp; Solusi Teknologi Moobi Eco</h2>
+              <p class="text-slate-600 text-sm mt-1">Produk website dan aplikasi terbukti yang telah membantu ratusan pelaku bisnis meningkatkan omset dan efisiensi operasional.</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-3 py-1.5 rounded-lg bg-surface-container text-xs text-slate-700 font-semibold">Terkurasi Moobi QA</span>
+              <span class="px-3 py-1.5 rounded-lg bg-primary/10 text-xs text-primary font-semibold">Ready for Quotation</span>
+            </div>
+          </div>
+
+          <!-- 4-Column Product Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- Card 1 -->
+            <div class="rounded-2xl bg-surface-container-lowest border border-slate-200 overflow-hidden shadow-md hover:shadow-xl transition-all flex flex-col justify-between">
+              <div>
+                <div class="relative h-48 w-full overflow-hidden bg-slate-100">
+                  <img class="w-full h-full object-cover" alt="Agro Logistics" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKFnDq8rPB1yGXQAifcw_IPArmtviqJ7sm1f8t-kJdVzTNGzNFweMzlY3N7sFszCUBotOaB_FRCxUDkwHLZpjQhrJbz14dBd2zUSeLLbjXq6e0kdqDx4HaMKxKGkY8OHx4dp1GKXnIzsLIYkpFUItFwMEqmOp3Qnvn2omK4umjV6tljNj6nrltV7U2_QD1r9hPCP007qxRllVcm3UAJ5xdqVp97gI8zt1Q_Mi_3vqAloshHXk98kPM">
+                  <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-white shadow-md text-[10px] text-primary font-bold">Agro Logistics</span>
+                  <span class="absolute bottom-3 right-3 px-2 py-0.5 rounded-md bg-primary text-white text-[10px] font-bold shadow-sm">Web &amp; Mobile ERP</span>
+                </div>
+                <div class="p-4 space-y-1.5">
+                  <span class="text-[10px] text-primary font-bold uppercase tracking-wider">Case Study #01</span>
+                  <h3 class="text-base font-bold text-slate-900 leading-tight">AgroNusantara Supply Chain App</h3>
+                  <p class="text-xs text-slate-600 font-medium leading-relaxed">Dashboard ERP logistik dan inventaris agrikultur multi-gudang dengan integrasi scanner barcode.</p>
+                </div>
+              </div>
+              <div class="p-4 pt-0">
+                <button onclick="navigateToPage('contact')" class="w-full py-2.5 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold transition shadow-sm">Lihat Studi Kasus</button>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="rounded-2xl bg-surface-container-lowest border border-slate-200 overflow-hidden shadow-md hover:shadow-xl transition-all flex flex-col justify-between">
+              <div>
+                <div class="relative h-48 w-full overflow-hidden bg-slate-100">
+                  <img class="w-full h-full object-cover" alt="FinPay Gateway" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBR9pSwAWXFBXwQY62JzixeauIYLTVXdIN8eLTNBxbd70UnXpIJ8GuuEsRdur6S4JzazXCBQ4KPQh3vYT8xs-isd_i-e6B79jv1EIZ358FNcYGmQNHddr3wlvVn74_4P0cB6qAY6UlsPGoUKGxZQVTkTamq_c91sAQOvy-Zkl0keyjYb8v4V8vXzKDx0t0TGACyHl4nl2uRoKaYn4N1Tds8BQFkXjkGCLinycaPNUqbeQgcIcKxUZOT">
+                  <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-white shadow-md text-[10px] text-primary font-bold">Fintech &amp; Merchant</span>
+                  <span class="absolute bottom-3 right-3 px-2 py-0.5 rounded-md bg-primary-container text-white text-[10px] font-bold shadow-sm">Fintech &amp; Payment</span>
+                </div>
+                <div class="p-4 space-y-1.5">
+                  <span class="text-[10px] text-primary font-bold uppercase tracking-wider">Case Study #02</span>
+                  <h3 class="text-base font-bold text-slate-900 leading-tight">FinPay Gateway &amp; Merchant App</h3>
+                  <p class="text-xs text-slate-600 font-medium leading-relaxed">Platform pembayaran multi-channel terintegrasi QRIS, Virtual Account, dan analitik rekonsiliasi.</p>
+                </div>
+              </div>
+              <div class="p-4 pt-0">
+                <button onclick="navigateToPage('contact')" class="w-full py-2.5 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold transition shadow-sm">Lihat Studi Kasus</button>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="rounded-2xl bg-surface-container-lowest border border-slate-200 overflow-hidden shadow-md hover:shadow-xl transition-all flex flex-col justify-between">
+              <div>
+                <div class="relative h-48 w-full overflow-hidden bg-slate-100">
+                  <img class="w-full h-full object-cover" alt="FurniCraft E-Commerce" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNcPqtA9Ue80n_9DCGXo1zDgDy0rIuaXfWBxqHkEXX_SqrzlyzkuQh6dnNbUvzSZKpCA-nbWZbI1gK__g_5kK09Ua-03U-Sfbx-7dz5OdDadOBG8Uw-vuZrf1a6P1GnwC0DLfaxOUzxxRD0FrwGjEcIaPNGYFvKiFf2bKqEVG9nP0csPOTpf6Ex8luPoklKsWuEjXQxh6ey4Mk5H2vzwNMmQZ5_FTRF1c8BHb8XZfaynrUh04er3jP">
+                  <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-white shadow-md text-[10px] text-primary font-bold">Retail Commerce</span>
+                  <span class="absolute bottom-3 right-3 px-2 py-0.5 rounded-md bg-primary text-white text-[10px] font-bold shadow-sm">E-Commerce Skala Besar</span>
+                </div>
+                <div class="p-4 space-y-1.5">
+                  <span class="text-[10px] text-primary font-bold uppercase tracking-wider">Case Study #03</span>
+                  <h3 class="text-base font-bold text-slate-900 leading-tight">FurniCraft E-Commerce Global</h3>
+                  <p class="text-xs text-slate-600 font-medium leading-relaxed">Website e-commerce katalog furnitur interaktif 3D, multi-mata uang, dan checkout terintegrasi.</p>
+                </div>
+              </div>
+              <div class="p-4 pt-0">
+                <button onclick="navigateToPage('contact')" class="w-full py-2.5 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold transition shadow-sm">Lihat Studi Kasus</button>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="rounded-2xl bg-surface-container-lowest border border-slate-200 overflow-hidden shadow-md hover:shadow-xl transition-all flex flex-col justify-between">
+              <div>
+                <div class="relative h-48 w-full overflow-hidden bg-slate-100">
+                  <img class="w-full h-full object-cover" alt="MedikaCare" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdqcZxU4KX25U1bf9mnJ-TJlj191sEHqSO9LYxxgTIYtEODYvjSJP6iZflTnHUMvWI1NrCGXGjlGz2SeMOXLyrEEE_HRAexwZEf4CUyxSgn7yUL9lnI3t3Mvm-_6_t3ONTEGQkrR-4heY4t4Uffht_q0586e7IQS8Ga1U302Xi-4x_2ARhiKsaDugQpcx-7KqxOwVcBvmXf1_fwWC97i3Gc3kzlE3FHXSzbd8KTLGN2k9_BLwK_4qz">
+                  <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-white shadow-md text-[10px] text-primary font-bold">Health Tech</span>
+                  <span class="absolute bottom-3 right-3 px-2 py-0.5 rounded-md bg-primary-container text-white text-[10px] font-bold shadow-sm">Mobile Health App</span>
+                </div>
+                <div class="p-4 space-y-1.5">
+                  <span class="text-[10px] text-primary font-bold uppercase tracking-wider">Case Study #04</span>
+                  <h3 class="text-base font-bold text-slate-900 leading-tight">MedikaCare Telemedicine System</h3>
+                  <p class="text-xs text-slate-600 font-medium leading-relaxed">Aplikasi reservasi dokter klinik, rekam medis elektronik terenkripsi, dan telekonsultasi video.</p>
+                </div>
+              </div>
+              <div class="p-4 pt-0">
+                <button onclick="navigateToPage('contact')" class="w-full py-2.5 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold transition shadow-sm">Lihat Studi Kasus</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: CERITA SUKSES & AUDIT BANNER -->
+      <section class="w-full py-16 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
+          
+          <!-- Testimonial Box -->
+          <div class="p-8 rounded-3xl bg-surface-container-lowest shadow-lg relative overflow-hidden border border-slate-200">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              
+              <!-- Left Image -->
+              <div class="lg:col-span-4">
+                <div class="relative rounded-2xl overflow-hidden shadow-md">
+                  <img class="w-full h-72 object-cover" alt="Hendra Setiawan" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADThZI_jOhyrgcxYhw1Le9x6DZlYdLq-9ufAtpK-ZOZrcd9nFqLvyCN3-v5gaUtVy494HUfQQu5kB5vYnjpKWSlgpYi77j79MGgQ1QPCkU2yr6LiUO3HAfswfooQYvFnCW3BA7NgMd43E6tcAu77YIGYBL6NsC89mVmLoh8mYkW7A7KhwaAvIsXKmnUbhVq-07Weyj1prF1JFHeJpPARPKfhwMUncPdk-BU5KNh62Yndb0QysIMkxV">
+                  <div class="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-white/90 backdrop-blur">
+                    <div class="flex items-center justify-between">
+                      <span class="text-xs text-slate-900 font-bold">Hendra Setiawan</span>
+                      <span class="text-[9px] text-primary bg-primary/10 px-2 py-0.5 rounded-full font-bold">Verified Client</span>
+                    </div>
+                    <span class="text-[11px] text-slate-500">CEO CV Karya Digital</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Testimonial -->
+              <div class="lg:col-span-8 flex flex-col gap-4">
+                <div class="flex items-center gap-2">
+                  <div class="flex text-amber-400">
+                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  </div>
+                  <span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Kisah Sukses Klien 2024</span>
+                </div>
+                <blockquote class="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">
+                  “Sebelumnya kami kesulitan mengelola operasional secara manual. Setelah Moobi Eco membangun web platform dan sistem manajemen digital terintegrasi, efisiensi kerja tim kami melonjak 300% dan konversi penjualan naik signifikan.”
+                </blockquote>
+                <div class="grid grid-cols-3 gap-3 pt-2">
+                  <div class="p-3 rounded-xl bg-surface-container">
+                    <span class="text-[11px] text-slate-500 block">Peningkatan Efisiensi</span>
+                    <span class="text-lg text-primary font-extrabold">+300%</span>
+                  </div>
+                  <div class="p-3 rounded-xl bg-surface-container">
+                    <span class="text-[11px] text-slate-500 block">Uptime Sistem</span>
+                    <span class="text-lg text-primary font-extrabold">99.99%</span>
+                  </div>
+                  <div class="p-3 rounded-xl bg-surface-container">
+                    <span class="text-[11px] text-slate-500 block">Waktu Delivery</span>
+                    <span class="text-sm sm:text-base text-primary font-extrabold">Tepat Waktu (4 Pekan)</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Action Banner -->
+          <div class="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-primary via-primary-container to-primary flex flex-col md:flex-row items-center justify-between gap-8 text-white relative overflow-hidden shadow-xl">
+            <div class="space-y-2 max-w-2xl">
+              <div class="inline-flex items-center gap-1.5 text-xs text-white bg-white/20 px-3 py-1 rounded-full uppercase tracking-wider font-bold w-fit">
+                <span class="material-symbols-outlined text-[16px]">rocket_launch</span>
+                <span>Mulai Proyek Digital Anda</span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Siap Mengembangkan Solusi Teknologi Bersama Moobi?</h2>
+              <p class="text-sm text-white/90 mt-1">Konsultasikan kebutuhan aplikasi, website e-commerce, atau sistem ERP bisnis Anda secara gratis bersama tim analis &amp; engineer kami.</p>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+              <a href="https://wa.me/6281299887720" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white text-primary font-bold text-sm hover:bg-slate-50 transition shadow-md">
+                <span>Jadwalkan Konsultasi Gratis</span>
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </a>
+              <button onclick="navigateToPage('product')" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-sm border border-white/30 transition">
+                <span class="material-symbols-outlined text-[18px]">payments</span>
+                <span>Lihat Paket Harga</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- PAGE 2: SUITE SOLUSI PRODUCT & HARGA - EXACT IMAGE 2                      -->
+    <!-- ========================================================================= -->
+    <div id="page-product" class="page-container w-full hidden">
+      
+      <!-- HERO PRODUCT -->
+      <section class="relative pt-10 pb-16 overflow-hidden bg-gradient-to-b from-blue-50/50 via-white to-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <div class="lg:col-span-7 space-y-5">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100/70 border border-blue-200 text-brand-600 text-xs font-bold tracking-wide uppercase">
+                <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span> SUITE LENGKAP E-COMMERCE &amp; OMNICHANNEL
+              </div>
+              <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+                Suite Solusi E-Commerce &amp; <span class="text-brand-600">Operasional Bisnis Online</span>
+              </h1>
+              <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl font-normal">
+                Satu ekosistem terpadu untuk menaikkan penjualan dan efisiensi operasional toko Anda di berbagai saluran penjualan.
+              </p>
+              <div class="flex flex-wrap items-center gap-4 pt-1">
+                <a href="#product-pricing-section" class="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white font-semibold px-7 py-3.5 rounded-full shadow-lg shadow-brand-500/25 transition">
+                  <span>Lihat Paket Layanan</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </a>
+                <button onclick="navigateToPage('contact')" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-700 font-semibold px-7 py-3.5 rounded-full border border-slate-200 shadow-sm transition">
+                  <span class="material-symbols-outlined text-brand-500 text-[18px]">chat</span>
+                  <span>Konsultasi Kebutuhan Gratis</span>
+                </button>
+              </div>
+              <div class="flex items-center gap-3 pt-1 text-xs text-slate-500">
+                <div class="flex -space-x-2">
+                  <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-100 border-2 border-white text-xs shadow-sm font-bold">⚡</span>
+                  <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-100 border-2 border-white text-xs shadow-sm font-bold">📱</span>
+                  <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-100 border-2 border-white text-xs shadow-sm font-bold">💻</span>
+                </div>
+                <span>Telah dipercaya <strong class="text-slate-800 font-bold">250+ bisnis &amp; startup</strong> untuk transformasi digital</span>
+              </div>
+            </div>
+
+            <!-- Right Hero Image with Solid Circle -->
+            <div class="lg:col-span-5 relative flex items-center justify-center">
+              <div class="absolute w-72 h-72 sm:w-96 sm:h-96 bg-brand-500 rounded-full shadow-2xl shadow-brand-500/30 -z-10"></div>
+              <div class="relative z-10 w-full max-w-sm sm:max-w-md flex justify-center">
+                <img alt="Moobi Development" class="w-auto max-h-[460px] sm:max-h-[500px] object-contain drop-shadow-2xl select-none pointer-events-none" src="moobi ecosystem/assets/assets pose2.png" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuCHdMqcYL3wyHZqExF4m92Y9yH6qBjWvFL6DVAeiLzG1yYhJyjBwneZUEVxTeNq836aYXaioIjR0F_Jl3uJ0GNSyL8iAlKoqBoIP9O0OY93eB1AHdKmmWomTftD4seCDV17qJLspv4va2eLZisvCehPd7e3dOkrQkcoSqkN8rcghBji9R735emHTrOkL1Ryj9SRP_TBYt-4uuCMwjEHvhRd2vFjfmIiAGWEWSqGR8_ftRGAWCQc3M58Arvw-xoe5MvcRA'">
+                <!-- Floating SLA Badge -->
+                <div class="absolute bottom-4 -right-2 sm:-right-4 bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-xl rounded-2xl p-3 flex items-center gap-3 z-20">
+                  <div class="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center text-white shrink-0 shadow-md font-bold text-sm">✓</div>
+                  <div>
+                    <div class="text-xs font-black text-slate-900">Garansi &amp; Free Maintenance</div>
+                    <div class="text-[11px] font-medium text-slate-500">SLA Terjamin &amp; Bug-Free</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Quick Bar -->
+          <div class="mt-12 bg-white border border-blue-100 shadow-md rounded-2xl p-4 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3.5">
+              <div class="w-11 h-11 rounded-xl bg-brand-500 text-white flex items-center justify-center font-bold text-lg shrink-0 shadow-md shadow-brand-500/20">
+                <span class="material-symbols-outlined text-[22px]">flash_on</span>
+              </div>
+              <div>
+                <div class="text-[11px] font-extrabold text-brand-600 uppercase tracking-wider">LAYANAN ESTIMASI CEPAT</div>
+                <div class="text-sm md:text-base font-bold text-slate-900">Audit Integrasi Toko Online, Sinkronisasi Stok &amp; Estimasi Setup Sistem dalam 24 Jam</div>
+              </div>
+            </div>
+            <button onclick="navigateToPage('contact')" class="bg-white hover:bg-blue-50 text-brand-600 border border-brand-500 text-xs md:text-sm font-bold px-6 py-2.5 rounded-full shadow-sm transition-all whitespace-nowrap inline-flex items-center gap-2">
+              <span>Minta Penawaran Proyek</span>
+              <span>→</span>
+            </button>
+          </div>
+
+          <!-- Metrics Bar -->
+          <div class="mt-4 bg-white border border-blue-100 shadow-md rounded-2xl p-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
+            <div class="flex items-center gap-3.5 px-2">
+              <div class="w-11 h-11 rounded-xl bg-blue-50 text-brand-600 flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[24px]">devices</span>
+              </div>
+              <div>
+                <div class="text-2xl lg:text-3xl font-black text-slate-900 tracking-tight">250+</div>
+                <div class="text-xs font-semibold text-slate-500">Website &amp; Aplikasi Rilis</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3.5 px-2 pt-4 sm:pt-0 sm:pl-4">
+              <div class="w-11 h-11 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[24px]">speed</span>
+              </div>
+              <div>
+                <div class="text-2xl lg:text-3xl font-black text-slate-900 tracking-tight">3–6 Pekan</div>
+                <div class="text-xs font-semibold text-slate-500">Rata-Rata Waktu Rilis</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3.5 px-2 pt-4 sm:pt-0 sm:pl-4">
+              <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[24px]">verified_user</span>
+              </div>
+              <div>
+                <div class="text-2xl lg:text-3xl font-black text-slate-900 tracking-tight">100%</div>
+                <div class="text-xs font-semibold text-slate-500">Garansi Bug &amp; SLA</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3.5 px-2 pt-4 sm:pt-0 sm:pl-4">
+              <div class="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[24px]">support_agent</span>
+              </div>
+              <div>
+                <div class="text-2xl lg:text-3xl font-black text-slate-900 tracking-tight">24/7</div>
+                <div class="text-xs font-semibold text-slate-500">Dukungan Teknis Siaga</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- MODULAR SHOWCASE SECTION -->
+      <section class="py-16 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-brand-600">SHOWCASE MODUL OPERASIONAL</span>
+              <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Fitur Modular Solusi E-Commerce</h2>
+              <p class="text-sm text-slate-500 mt-2 max-w-xl">Jelajahi modul operasional yang siap dikombinasikan untuk mempercepat pertumbuhan transaksi bisnis daring Anda.</p>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-4 md:mt-0">
+              <button onclick="navigateToWorkspace()" class="px-5 py-2 bg-brand-500 text-white rounded-full text-xs font-semibold shadow-sm">Uji di Workspace →</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <div class="bg-white rounded-2xl border border-slate-300 overflow-hidden shadow-md hover:shadow-xl transition flex flex-col">
+              <div class="h-44 bg-gradient-to-br from-blue-900 to-indigo-950 p-4 text-white flex flex-col justify-between">
+                <div class="flex justify-between items-start">
+                  <span class="px-2 py-0.5 bg-brand-500 text-white rounded text-[10px] font-mono font-bold">MULTI-CHANNEL</span>
+                  <span class="text-[10px] bg-blue-100 text-brand-700 font-bold px-2 py-0.5 rounded">Auto-Sync</span>
+                </div>
+                <div>
+                  <div class="text-[11px] text-blue-300 font-semibold uppercase">Manajemen Marketplace</div>
+                  <h4 class="text-base font-bold">Sinkronisasi Stok &amp; Pesanan</h4>
+                </div>
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <p class="text-xs text-slate-600 mb-4 leading-relaxed">Hubungkan Shopee, Tokopedia, TikTok Shop, Lazada &amp; WooCommerce dalam 1 kontroler sentral bebas bentrok stok.</p>
+                <div class="flex items-center justify-between pt-3 border-t border-slate-200 text-xs">
+                  <span class="text-slate-500 font-medium text-[11px]">Multi-Warehouse</span>
+                  <a href="javascript:void(0)" onclick="navigateToWorkspace(); switchWorkspaceModule('channelSync');" class="text-brand-600 font-bold hover:underline">Detail Modul →</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-300 overflow-hidden shadow-md hover:shadow-xl transition flex flex-col">
+              <div class="h-44 bg-gradient-to-br from-emerald-800 to-teal-950 p-4 text-white flex flex-col justify-between">
+                <div class="flex justify-between items-start">
+                  <span class="px-2 py-0.5 bg-emerald-500 text-white rounded text-[10px] font-mono font-bold">LOGISTIK &amp; EKSPEDISI</span>
+                  <span class="text-[10px] bg-emerald-100 text-emerald-700 font-bold px-2 py-0.5 rounded">Multi-Kurir</span>
+                </div>
+                <div>
+                  <div class="text-[11px] text-emerald-300 font-semibold uppercase">Shipping Engine</div>
+                  <h4 class="text-base font-bold">Cetak Resi &amp; Pick Up Massal</h4>
+                </div>
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <p class="text-xs text-slate-600 mb-4 leading-relaxed">Terintegrasi JNE, SiCepat, J&amp;T, Ninja, GoSend, Grab. Request pick up massal &amp; update tracking otomatis ke pembeli.</p>
+                <div class="flex items-center justify-between pt-3 border-t border-slate-200 text-xs">
+                  <span class="text-slate-500 font-medium text-[11px]">Diskon Ongkir s.d 25%</span>
+                  <a href="javascript:void(0)" onclick="navigateToWorkspace(); switchWorkspaceModule('logisticsShip');" class="text-brand-600 font-bold hover:underline">Detail Modul →</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-300 overflow-hidden shadow-md hover:shadow-xl transition flex flex-col">
+              <div class="h-44 bg-gradient-to-br from-purple-900 to-slate-950 p-4 text-white flex flex-col justify-between">
+                <div class="flex justify-between items-start">
+                  <span class="px-2 py-0.5 bg-purple-600 text-white rounded text-[10px] font-mono font-bold">AI CRM &amp; WHATSAPP</span>
+                  <span class="text-[10px] bg-purple-100 text-purple-700 font-bold px-2 py-0.5 rounded">Auto-Closing</span>
+                </div>
+                <div>
+                  <div class="text-[11px] text-purple-300 font-semibold uppercase">Chatbot Cerdas</div>
+                  <h4 class="text-base font-bold">Omnichannel Sales Assistant</h4>
+                </div>
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <p class="text-xs text-slate-600 mb-4 leading-relaxed">Balas chat calon pembeli dalam hitungan detik, kirim link pembayaran instan, dan broadcast berkala aman 0% banned.</p>
+                <div class="flex items-center justify-between pt-3 border-t border-slate-200 text-xs">
+                  <span class="text-slate-500 font-medium text-[11px]">WhatsApp Official API</span>
+                  <a href="javascript:void(0)" onclick="navigateToWorkspace(); switchWorkspaceModule('chatbotCs');" class="text-brand-600 font-bold hover:underline">Detail Modul →</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-300 overflow-hidden shadow-md hover:shadow-xl transition flex flex-col">
+              <div class="h-44 bg-gradient-to-br from-amber-800 to-stone-900 p-4 text-white flex flex-col justify-between">
+                <div class="flex justify-between items-start">
+                  <span class="px-2 py-0.5 bg-amber-500 text-white rounded text-[10px] font-mono font-bold">FINANCE &amp; BILLING</span>
+                  <span class="text-[10px] bg-amber-100 text-amber-700 font-bold px-2 py-0.5 rounded">Auto Invoicing</span>
+                </div>
+                <div>
+                  <div class="text-[11px] text-amber-300 font-semibold uppercase">Otomasi Finansial</div>
+                  <h4 class="text-base font-bold">Rekonsiliasi Kas &amp; Tagihan</h4>
+                </div>
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <p class="text-xs text-slate-600 mb-4 leading-relaxed">Faktur elektronik instan, rekonsiliasi mutasi bank otomatis, pemisahan omzet kotor vs fee marketplace &amp; laba bersih.</p>
+                <div class="flex items-center justify-between pt-3 border-t border-slate-200 text-xs">
+                  <span class="text-slate-500 font-medium text-[11px]">Export Akuntansi</span>
+                  <a href="javascript:void(0)" onclick="navigateToWorkspace(); switchWorkspaceModule('agenticInvoice');" class="text-brand-600 font-bold hover:underline">Detail Modul →</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- COMPARISON TABLE SECTION -->
+      <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-3xl mx-auto mb-10">
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-600">KOMPARASI EFISIENSI OPERASIONAL</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">Sistem Terpisah Manual vs Suite Terpadu Moobi</h2>
+            <p class="text-sm text-slate-500 mt-2">Perbandingan efisiensi operasional antara memakai aplikasi parsial yang terpisah-pisah vs suite e-commerce 6 pilar terintegrasi dari Moobi:</p>
+          </div>
+
+          <div class="overflow-hidden rounded-3xl border-2 border-blue-200/90 bg-white shadow-xl">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="border-b border-slate-200">
+                    <th class="py-4 px-6 font-bold text-slate-800 text-xs uppercase bg-slate-50/50 w-1/4">PARAMETER OPERASIONAL</th>
+                    <th class="py-4 px-6 font-bold text-red-600 text-xs uppercase bg-red-50/50 border-l-2 border-red-500 w-3/8">CARA KONVENSIONAL &amp; TOOL PARSIAL</th>
+                    <th class="py-4 px-6 font-bold text-brand-600 text-xs uppercase bg-blue-50/70 border-l-2 border-brand-500 w-3/8">SUITE TERPADU MOOBI E-COMMERCE</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 text-xs">
+                  <tr>
+                    <td class="py-5 px-6 font-bold text-slate-900 bg-white">Sinkronisasi Stok &amp; Multi-Channel</td>
+                    <td class="py-5 px-6 text-slate-800 bg-red-50/40 border-l-2 border-red-500">
+                      <div class="flex items-start gap-2.5">
+                        <span class="w-4 h-4 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">✕</span>
+                        <span>Input manual satu per satu di tiap marketplace; rawan selisih stok (overselling) dan penalti toko.</span>
+                      </div>
+                    </td>
+                    <td class="py-5 px-6 text-slate-800 bg-blue-50/50 border-l-2 border-brand-500 font-semibold">
+                      <div class="flex items-start gap-2.5">
+                        <span class="w-4 h-4 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">✓</span>
+                        <span>Sinkronisasi otomatis real-time ke Shopee, Tokopedia, TikTok &amp; Web Store dalam 1 klik.</span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-5 px-6 font-bold text-slate-900 bg-white">Penagihan &amp; Rekonsiliasi Kas</td>
+                    <td class="py-5 px-6 text-slate-800 bg-red-50/40 border-l-2 border-red-500">
+                      <div class="flex items-start gap-2.5">
+                        <span class="w-4 h-4 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">✕</span>
+                        <span>Kirim tagihan manual via WA, cek bukti transfer m-banking satu persatu, rawan human-error.</span>
+                      </div>
+                    </td>
+                    <td class="py-5 px-6 text-slate-800 bg-blue-50/50 border-l-2 border-brand-500 font-semibold">
+                      <div class="flex items-start gap-2.5">
+                        <span class="w-4 h-4 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">✓</span>
+                        <span>Invoice instan QRIS/VA otomatis, verifikasi mutasi bank otomatis tanpa cek mutasi manual.</span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-5 px-6 font-bold text-slate-900 bg-white">Manajemen Pengiriman &amp; Resi</td>
+                    <td class="py-5 px-6 text-slate-800 bg-red-50/40 border-l-2 border-red-500">
+                      <div class="flex items-start gap-2.5">
+                        <span class="w-4 h-4 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">✕</span>
+                        <span>Antre di gerai kurir, ketik resi satu-satu, tidak ada update status paket otomatis ke pelanggan.</span>
+                      </div>
+                    </td>
+                    <td class="py-5 px-6 text-slate-800 bg-blue-50/50 border-l-2 border-brand-500 font-semibold">
+                      <div class="flex items-start gap-2.5">
+                        <span class="w-4 h-4 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">✓</span>
+                        <span>Pick up kurir otomatis di gudang, cetak thermal resi massal, push notifikasi resi via WA ke pembeli.</span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-5 px-6 font-bold text-slate-900 bg-white">Respon Pelanggan &amp; Retensi (CRM)</td>
+                    <td class="py-5 px-6 text-slate-800 bg-red-50/40 border-l-2 border-red-500">
+                      <div class="flex items-start gap-2.5">
+                        <span class="w-4 h-4 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">✕</span>
+                        <span>Balas lambat saat malam atau hari libur; kehilangan 40%+ prospek yang batal membeli.</span>
+                      </div>
+                    </td>
+                    <td class="py-5 px-6 text-slate-800 bg-blue-50/50 border-l-2 border-brand-500 font-semibold">
+                      <div class="flex items-start gap-2.5">
+                        <span class="w-4 h-4 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">✓</span>
+                        <span>Chatbot AI cerdas 24/7 menjawab FAQ produk, rekomendasi barang, closing otomatis, dan tracking CLV.</span>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3-TIER PRICING TABLE -->
+      <section id="product-pricing-section" class="py-16 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-600">PAKET HARGA TRANSPARAN</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">Investasi Pembuatan Website &amp; Aplikasi</h2>
+            <p class="text-sm text-slate-500 mt-2">Pilih paket pengembangan yang terukur dan sesuai dengan fase kebutuhan bisnis Anda saat ini.</p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+            
+            <div class="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm flex flex-col justify-between hover:border-slate-300 transition">
+              <div>
+                <span class="text-[11px] font-bold tracking-wider text-slate-500 uppercase">UMKM &amp; BRAND BARU</span>
+                <h3 class="text-2xl font-black text-slate-900 mt-1">Paket Starter Online</h3>
+                <p class="text-xs text-slate-500 mt-2 min-h-[32px]">Solusi tepat untuk mulai go-digital dengan toko online mandiri &amp; penagihan otomatis.</p>
+                <div class="my-6 pb-6 border-b border-slate-100 flex items-baseline gap-1">
+                  <span class="text-3xl font-black text-slate-900">Rp 5.500.000</span>
+                  <span class="text-xs text-slate-400 font-medium">/ paket setup</span>
+                </div>
+                <ul class="space-y-3.5 text-xs text-slate-600 mb-8">
+                  <li class="flex items-start gap-2.5"><span class="material-symbols-outlined text-emerald-500 text-[18px]">check_circle</span><span>Website Toko Online Mandiri &amp; Katalog Responsif</span></li>
+                  <li class="flex items-start gap-2.5"><span class="material-symbols-outlined text-emerald-500 text-[18px]">check_circle</span><span>Invoice &amp; Pembayaran QRIS / Virtual Account</span></li>
+                  <li class="flex items-start gap-2.5"><span class="material-symbols-outlined text-emerald-500 text-[18px]">check_circle</span><span>Koneksi Ekspedisi Lokal &amp; Cek Ongkir Otomatis</span></li>
+                  <li class="flex items-start gap-2.5"><span class="material-symbols-outlined text-emerald-500 text-[18px]">check_circle</span><span>Database Pelanggan Dasar &amp; Notifikasi WA Order</span></li>
+                  <li class="flex items-start gap-2.5"><span class="material-symbols-outlined text-emerald-500 text-[18px]">check_circle</span><span>Garansi Maintenance &amp; Pendampingan 3 Bulan</span></li>
+                </ul>
+              </div>
+              <button onclick="navigateToPage('contact')" class="w-full text-center py-3 px-4 rounded-full border border-slate-300 font-bold text-xs text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition">Pilih Starter Online</button>
+            </div>
+
+            <div class="bg-white rounded-3xl border-2 border-brand-500 p-8 shadow-xl relative flex flex-col justify-between transform lg:-translate-y-2">
+              <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-brand-500 text-white text-[10px] font-extrabold uppercase px-4 py-1 rounded-full tracking-wider shadow">PALING DIMINATI • BEST VALUE</div>
+              <div>
+                <span class="text-[11px] font-bold tracking-wider text-brand-600 uppercase">GROWING BRAND &amp; RETAIL</span>
+                <h3 class="text-2xl font-black text-slate-900 mt-1">Pro E-Commerce Multi-Marketplace</h3>
+                <p class="text-xs text-slate-500 mt-2 min-h-[32px]">Integrasi menyeluruh marketplace, sinkronisasi stok, logistik massal &amp; chatbot AI.</p>
+                <div class="my-6 pb-6 border-b border-slate-100 flex items-baseline gap-1">
+                  <span class="text-3xl font-black text-slate-900">Rp 16.500.000</span>
+                  <span class="text-xs text-slate-400 font-medium">/ paket setup</span>
+                </div>
+                <ul class="space-y-3.5 text-xs text-slate-700 mb-8 font-medium">
+                  <li class="flex items-start gap-2.5"><span class="material-symbols-outlined text-brand-600 text-[18px]">check_circle</span><span>Sinkronisasi Stok Real-Time (Shopee, Tokopedia, TikTok, Web)</span></li>
+                  <li class="flex items-start gap-2.5"><span class="material-symbols-outlined text-brand-600 text-[18px]">check_circle</span><span>Manajemen Logistik &amp; Cetak Label Resi Massal Cepat</span></li>
+                  <li class="flex items-start gap-2.5"><span class="material-symbols-outlined text-brand-600 text-[18px]">check_circle</span><span>Chatbot CRM Cerdas WhatsApp AI (Closing Otomatis 24/7)</span></li>
+                  <li class="flex items-start gap-2.5"><span class="material-symbols-outlined text-brand-600 text-[18px]">check_circle</span><span>Invoice &amp; Rekonsiliasi Kas Pembayaran Otomatis</span></li>
+                  <li class="flex items-start gap-2.5 text-brand-700 font-bold bg-blue-50/70 p-2 rounded-lg"><span class="material-symbols-outlined text-brand-600 text-[18px]">verified</span><span>6 Pilar E-Commerce Terintegrasi &amp; Garansi 6 Bulan</span></li>
+                </ul>
+              </div>
+              <button onclick="navigateToPage('contact')" class="w-full text-center py-3.5 px-4 rounded-full bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs shadow-lg shadow-brand-500/25 transition">Mulai Pro E-Commerce</button>
+            </div>
+
+            <div class="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm flex flex-col justify-between hover:border-slate-300 transition">
+              <div>
+                <span class="text-[11px] font-bold tracking-wider text-purple-600 uppercase">DISTRIBUTOR &amp; ENTERPRISE</span>
+                <h3 class="text-2xl font-black text-slate-900 mt-1">Enterprise Omnichannel &amp; Custom ERP</h3>
+                <p class="text-xs text-slate-500 mt-2 min-h-[32px]">Automasi total multi-gudang, B2B wholesale, integrasi POS offline &amp; sistem ERP kustom.</p>
+                <div class="my-6 pb-6 border-b border-slate-100 flex items-baseline gap-1">
+                  <span class="text-3xl font-black text-slate-900">Rp 32.000.000</span>
+                  <span class="text-xs text-slate-400 font-medium">/ custom scope</span>
+                </div>
+                <ul class="space-y-3.5 text-xs text-slate-600 mb-8">
+                  <li class="flex items-start gap-2.5"><span class="material-symbols-outlined text-emerald-500 text-[18px]">check_circle</span><span>Multi-Warehouse &amp; Outlet Offline POS Synchronization</span></li>
+                  <li class="flex items-start gap-2.5"><span class="material-symbols-outlined text-emerald-500 text-[18px]">check_circle</span><span>B2B Wholesale Portal &amp; Harga Bertingkat Khusus Reseller</span></li>
+                  <li class="flex items-start gap-2.5"><span class="material-symbols-outlined text-emerald-500 text-[18px]">check_circle</span><span>Custom ERP Accounting, Faktur Pajak &amp; Audit Log</span></li>
+                  <li class="flex items-start gap-2.5 text-purple-700 font-bold bg-purple-50/60 p-2 rounded-lg"><span class="material-symbols-outlined text-purple-600 text-[18px]">verified</span><span>Dedicated Software Architect &amp; SLA Enterprise Prioritas</span></li>
+                  <li class="flex items-start gap-2.5"><span class="material-symbols-outlined text-emerald-500 text-[18px]">check_circle</span><span>Full Source Code Handover &amp; Dukungan On-Premise/Cloud</span></li>
+                </ul>
+              </div>
+              <button onclick="navigateToPage('contact')" class="w-full text-center py-3 px-4 rounded-full border border-brand-500 text-brand-600 hover:bg-brand-50 font-bold text-xs transition">Diskusikan Enterprise ERP</button>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- PAGE 3: PROFILE & TENTANG KAMI - EXACT IMAGE 3                            -->
+    <!-- ========================================================================= -->
+    <div id="page-profile" class="page-container w-full hidden">
+      
+      <!-- HERO PROFILE -->
+      <section class="relative w-full overflow-hidden bg-surface pt-10 pb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <div class="lg:col-span-7 space-y-5">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-primary-container text-xs font-bold uppercase tracking-wider">
+                <span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>Tentang Moobi • Solusi Software &amp; Infrastruktur E-Commerce
+              </div>
+              <h1 class="text-4xl sm:text-5xl font-extrabold text-on-surface leading-tight tracking-tight">
+                Membangun Ekosistem Digital &amp; <span class="text-primary-container">Infrastruktur E-Commerce</span> Indonesia
+              </h1>
+              <p class="text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed">
+                Moobi menghadirkan platform teknologi terintegrasi untuk menghubungkan Marketplace, Logistik &amp; Pengiriman, CRM, serta AI Chatbot otomatis guna membantu ribuan brand lokal dan enterprise scale up lebih cepat dan efisien.
+              </p>
+              <div class="flex flex-wrap items-center gap-4 pt-1">
+                <button onclick="navigateToPage('product')" class="inline-flex items-center justify-center px-7 py-3.5 rounded-xl bg-primary-container text-white text-sm font-semibold shadow-lg shadow-primary-container/25 hover:bg-primary transition">
+                  <span>Eksplor Solusi E-Commerce</span>
+                  <span class="material-symbols-outlined text-[18px] ml-2">arrow_forward</span>
+                </button>
+                <button onclick="navigateToWorkspace()" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-surface-container-low text-slate-800 text-sm font-semibold hover:bg-surface-container transition">
+                  <span class="material-symbols-outlined text-[18px] text-primary mr-2">storefront</span>
+                  <span>Jelajahi Fitur Platform</span>
+                </button>
+              </div>
+              <div class="pt-2 flex flex-wrap gap-2 text-xs text-slate-600 font-medium">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-lowest shadow-sm border border-slate-200"><span class="material-symbols-outlined text-primary text-[16px]">verified</span>ISO 27001 Security Standard</span>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-lowest shadow-sm border border-slate-200"><span class="material-symbols-outlined text-secondary text-[16px]">sync</span>Real-Time Multi-Channel Sync</span>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5 relative flex justify-center items-center">
+              <div class="w-[360px] h-[360px] md:w-[440px] md:h-[440px] rounded-full bg-gradient-to-tr from-primary-container to-primary flex items-end justify-center relative shadow-2xl shadow-primary-container/20">
+                <img alt="Moobi Lead" class="relative z-10 w-[95%] h-[105%] object-contain object-bottom select-none pointer-events-none drop-shadow-xl" src="moobi ecosystem/assets/assets pose3.png" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuB15O_GJ-EGUzk8ZSPaU7-MG9eW--G-LQCZF7KDXPZmc9y8OSRAtdgnrucFVAPBozufDUFS1yXt46iISuKzXZ9MfUMh1K-HeGbBoiskN5CnfBjH28tStrdSvoLTJxmILmYD36rjdtwr6adFvQXh55cOs9otArqzdAXx0_RwF3uDKrS8V1EPVh6A02BKYoDr410BcNuchniaVBqwO65FftIo-9ZcFgVUKHjVny2vhUP_HfyEAC3WaBilFRLgP9tKI441Og'">
+                <div class="absolute -bottom-3 -right-3 z-20 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-3 border border-slate-100">
+                  <div class="w-10 h-10 rounded-xl bg-secondary-fixed flex items-center justify-center text-secondary font-bold">
+                    <span class="material-symbols-outlined text-[20px]">support_agent</span>
+                  </div>
+                  <div>
+                    <span class="text-base font-bold text-slate-900 leading-none">24/7</span>
+                    <span class="text-[10px] text-slate-500 block">SLA Support &amp; Ops</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Quick Metrics Strip -->
+          <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 p-6 rounded-2xl bg-surface-container-lowest shadow-sm border border-slate-200">
+            <div class="flex items-center gap-4 p-2">
+              <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-primary shrink-0"><span class="material-symbols-outlined text-[26px]">storefront</span></div>
+              <div><div class="text-2xl font-bold text-slate-900">2.500+</div><div class="text-xs text-slate-500">Toko &amp; Brand Aktif</div></div>
+            </div>
+            <div class="flex items-center gap-4 p-2 md:border-l border-slate-200">
+              <div class="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center text-secondary shrink-0"><span class="material-symbols-outlined text-[26px]">local_shipping</span></div>
+              <div><div class="text-2xl font-bold text-slate-900">10M+</div><div class="text-xs text-slate-500">Paket Terkirim Terintegrasi</div></div>
+            </div>
+            <div class="flex items-center gap-4 p-2 md:border-l border-slate-200">
+              <div class="w-12 h-12 rounded-xl bg-rose-50 flex items-center justify-center text-tertiary shrink-0"><span class="material-symbols-outlined text-[26px]">sync_saved_locally</span></div>
+              <div><div class="text-2xl font-bold text-slate-900">99.9%</div><div class="text-xs text-slate-500">Uptime Sinkronisasi Stok &amp; Invoice</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISI & MISI SECTION -->
+      <section class="w-full py-16 bg-surface-container-low border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          <div class="max-w-2xl mx-auto text-center space-y-2">
+            <span class="inline-block px-3 py-1 rounded-full text-[11px] text-primary tracking-widest uppercase font-bold bg-primary-fixed border border-blue-200">ARAH STRATEGIS</span>
+            <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Visi &amp; Misi Digital Agency</h2>
+            <p class="text-sm text-slate-600 max-w-xl mx-auto">Prinsip pemandu dalam setiap baris kode, desain antarmuka, dan inovasi arsitektur cloud yang kami bangun.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+            
+            <div class="bg-gradient-to-br from-primary-container to-primary rounded-3xl p-8 shadow-xl text-white flex flex-col justify-between border border-blue-400/40">
+              <div class="space-y-4">
+                <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-white shadow-sm backdrop-blur">
+                  <span class="material-symbols-outlined text-[26px]">flag</span>
+                </div>
+                <div>
+                  <span class="text-[10px] text-blue-100 uppercase tracking-wider font-bold block">ASPIRASI EKOSISTEM</span>
+                  <h3 class="text-2xl font-bold text-white mt-1">Visi Moobi</h3>
+                </div>
+                <p class="text-base text-white/95 font-medium leading-relaxed pt-2">
+                  “Menjadi fondasi infrastruktur teknologi dan otomasi e-commerce nomor satu di Indonesia yang mendemokratisasi akses tools enterprise untuk seluruh skala bisnis dan brand lokal.”
+                </p>
+              </div>
+              <div class="mt-6 pt-4 border-t border-white/20 flex items-center gap-2 text-blue-100 text-xs font-bold">
+                <span class="material-symbols-outlined text-[18px] text-white">verified</span>
+                <span>Enabling Indonesia's Digital Merchants</span>
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-primary-container to-primary rounded-3xl p-8 shadow-xl text-white flex flex-col justify-between border border-blue-400/40">
+              <div class="space-y-4">
+                <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-white shadow-sm backdrop-blur">
+                  <span class="material-symbols-outlined text-[26px]">hub</span>
+                </div>
+                <div>
+                  <span class="text-[10px] text-blue-100 uppercase tracking-wider font-bold block">MISI NYATA KAMI</span>
+                  <h3 class="text-2xl font-bold text-white mt-1">Misi Kami</h3>
+                </div>
+                <ul class="space-y-3 text-xs pt-1">
+                  <li class="flex items-start gap-2.5">
+                    <span class="material-symbols-outlined text-white text-[20px] mt-0.5 shrink-0">check_circle</span>
+                    <span><strong class="text-white font-bold">Sinkronisasi Multi-Channel:</strong> <span class="text-blue-100">Menyatukan katalog, stok, pesanan, dan chat dari Shopee, Tokopedia, TikTok Shop, Lazada dalam 1 dasbor.</span></span>
+                  </li>
+                  <li class="flex items-start gap-2.5">
+                    <span class="material-symbols-outlined text-white text-[20px] mt-0.5 shrink-0">check_circle</span>
+                    <span><strong class="text-white font-bold">Otomasi Logistik &amp; Kurir:</strong> <span class="text-blue-100">Mengintegrasikan 15+ ekspedisi nasional dengan auto-generate resi instan dan tracking real-time.</span></span>
+                  </li>
+                  <li class="flex items-start gap-2.5">
+                    <span class="material-symbols-outlined text-white text-[20px] mt-0.5 shrink-0">check_circle</span>
+                    <span><strong class="text-white font-bold">AI CS &amp; Retensi Pelanggan:</strong> <span class="text-blue-100">Menghadirkan bot cerdas 24/7 untuk closing pesanan otomatis serta broadcast promo CRM terukur.</span></span>
+                  </li>
+                </ul>
+              </div>
+              <div class="mt-6 pt-4 border-t border-white/20 flex items-center gap-2 text-blue-100 text-xs font-bold">
+                <span class="material-symbols-outlined text-[18px] text-white">sync_alt</span>
+                <span>Seamless Integration &amp; Scalable Automation</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- TIMELINE MILESTONES -->
+      <section class="w-full py-16 bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          <div class="max-w-2xl space-y-1">
+            <span class="text-xs text-primary-container tracking-wider uppercase font-bold">Perjalanan &amp; Milestone</span>
+            <h2 class="text-3xl font-bold text-slate-900">Rekam Jejak Karya Digital</h2>
+            <p class="text-sm text-slate-600">Dari studio pengembangan prototipe hingga menjadi software house dan agensi produk tepercaya skala nasional.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-blue-200/80 space-y-3 flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="w-12 h-7 rounded-full bg-blue-100 text-primary font-bold flex items-center justify-center text-xs">2022</div>
+                <h3 class="text-base font-bold text-slate-900">Peluncuran Multi-Channel Sync</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">Rilis engine integrasi awal yang menghubungkan Tokopedia &amp; Shopee secara real-time untuk 200 merchant pertama.</p>
+              </div>
+              <div class="pt-2 border-t border-slate-100 flex items-center gap-1.5 text-primary text-[11px] font-bold">
+                <span class="material-symbols-outlined text-[14px]">sync</span>Inisiasi Engine Sinkronisasi
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-purple-200/80 space-y-3 flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="w-12 h-7 rounded-full bg-purple-100 text-secondary font-bold flex items-center justify-center text-xs">2023</div>
+                <h3 class="text-base font-bold text-slate-900">Integrasi Ekspedisi &amp; Resi</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">Integrasi langsung dengan 15+ logistik nasional (J&amp;T, SiCepat, JNE, Ninja), memproses 1M+ paket otomatis per bulan.</p>
+              </div>
+              <div class="pt-2 border-t border-slate-100 flex items-center gap-1.5 text-secondary text-[11px] font-bold">
+                <span class="material-symbols-outlined text-[14px]">local_shipping</span>15+ Ekspedisi Terintegrasi
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-rose-200/80 space-y-3 flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="w-12 h-7 rounded-full bg-rose-100 text-tertiary font-bold flex items-center justify-center text-xs">2024</div>
+                <h3 class="text-base font-bold text-slate-900">2.500+ Brand &amp; 10M Paket</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">Tembus 2.500 brand aktif dengan total 10.000.000+ paket terkirim serta ekspansi ke integrasi TikTok Shop &amp; WhatsApp CRM.</p>
+              </div>
+              <div class="pt-2 border-t border-slate-100 flex items-center gap-1.5 text-tertiary text-[11px] font-bold">
+                <span class="material-symbols-outlined text-[14px]">military_tech</span>10M+ Paket Terkirim
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-xl border-2 border-primary-container ring-2 ring-primary-container/20 space-y-3 flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="w-12 h-7 rounded-full bg-primary text-white font-bold flex items-center justify-center text-xs">2025</div>
+                <h3 class="text-base font-bold text-primary-container">Generative AI E-Commerce</h3>
+                <p class="text-xs text-slate-700 leading-relaxed">Peluncuran AI Agent pintar untuk customer service 24/7, rekomendasi otomatis, serta dynamic inventory forecasting.</p>
+              </div>
+              <div class="pt-2 border-t border-slate-100 flex items-center gap-1.5 text-primary-container text-[11px] font-bold">
+                <span class="material-symbols-outlined text-[14px]">smart_toy</span>Era Smart Omnichannel
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- PAGE 4: BLOG & WAWASAN E-COMMERCE - EXACT IMAGE 4                         -->
+    <!-- ========================================================================= -->
+    <div id="page-blog" class="page-container w-full hidden">
+      
+      <!-- HERO BLOG -->
+      <section class="relative w-full py-12 bg-surface-container-low overflow-hidden border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <div class="lg:col-span-7 space-y-5">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white shadow-sm text-primary-container text-xs font-bold uppercase tracking-wider">
+                <span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>PUSAT EDUKASI &amp; STRATEGI E-COMMERCE
+              </div>
+              <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                Wawasan, Strategi &amp; Panduan Pertumbuhan <span class="text-primary-container">Bisnis E-Commerce</span>
+              </h1>
+              <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
+                Kumpulan panduan taktis, otomasi operasional marketplace, manajemen inventori multikanal, dan optimasi konversi penjualan digital terintegrasi.
+              </p>
+              <div class="flex flex-wrap items-center gap-4 pt-1 text-xs font-medium text-slate-700">
+                <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-primary text-[18px]">verified</span><span>120+ Panduan Praktis</span></div>
+                <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-primary text-[18px]">update</span><span>Update Mingguan</span></div>
+                <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-primary text-[18px]">groups</span><span>8.500+ Pembaca Aktif</span></div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5 flex items-center justify-center">
+              <img src="moobi ecosystem/assets/assets ilustrasi1.png" alt="Multi-Device Illustration" class="w-full max-h-[380px] object-contain drop-shadow-2xl" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuDaWP60M7WXF6dkGueDeAdcMrWgbHn59YBVJ_l7QZ3L92T9EgbVkZM1kbv6YTLVUXG7vSJHKHq-12Ku4Z0uhcMTLnyOsdv8jcWBXyjPkjfbCcxOv_Vtg8FVHJofm9acRe9ZrYEX9LY1Z8XpuS-DZ5MAuwNkHc0CiXNBM4w4cJXprlsthIQi7ynfIhECkJLjffwoFpWcWebsFEc_sYJ5axZmt8bhOzjJdh5DtsFwlkqqw5OL3RG1Qahs3VEKnCLuDfVnpA'">
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- SEARCH & FILTER BAR -->
+      <section class="w-full py-6 bg-surface relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="bg-white p-5 rounded-3xl shadow-lg border border-slate-200 space-y-4">
+            <div class="flex flex-col md:flex-row gap-3 items-center">
+              <div class="relative flex-1 w-full">
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
+                <input class="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-50 text-xs text-slate-800 placeholder:text-slate-400 focus:outline-none focus:bg-white border border-slate-200" placeholder="Cari strategi marketplace, integrasi stok, invoice, WhatsApp CRM..." type="text">
+              </div>
+              <button class="w-full md:w-auto px-6 py-3 bg-primary-container text-white text-xs font-bold rounded-xl shadow hover:bg-primary transition flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">manage_search</span>Cari Wawasan
+              </button>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-100 text-xs font-medium">
+              <button class="px-4 py-1.5 rounded-full bg-primary-container text-white font-bold shadow-sm">Semua</button>
+              <button class="px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200">Marketplace Ops</button>
+              <button class="px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200">Invoice &amp; Finance</button>
+              <button class="px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200">CRM &amp; Retensi</button>
+              <button class="px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200">Logistik &amp; Pengiriman</button>
+              <button class="px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200">Otomasi Chatbot AI</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURED ARTICLE & GRID -->
+      <section class="w-full py-10 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          
+          <!-- Editor's Choice -->
+          <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-200">
+            <div class="h-1.5 w-full bg-gradient-to-r from-primary via-secondary to-tertiary"></div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+              <div class="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between space-y-4">
+                <div class="space-y-3">
+                  <div class="flex items-center gap-2">
+                    <span class="px-2.5 py-0.5 rounded bg-rose-600 text-white text-[10px] font-bold uppercase tracking-wider">EDITOR'S CHOICE</span>
+                    <span class="text-xs text-primary font-bold">Omnichannel &amp; Sync Stok</span>
+                    <span class="text-xs text-slate-400">• 7 Menit Baca</span>
+                  </div>
+                  <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug">Panduan Mengintegrasikan 5 Toko Marketplace ke 1 Sistem Terpusat Tanpa Takut Selisih Stok</h2>
+                  <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Langkah konkret menghubungkan katalog Shopee, Tokopedia, TikTok Shop, dan Lazada dengan sinkronisasi inventori real-time under 2 detik guna mencegah overselling.</p>
+                </div>
+                <div class="pt-4 flex items-center justify-between border-t border-slate-100">
+                  <div class="text-xs">
+                    <strong class="text-slate-900 block font-bold">Tim Solusi E-Commerce Moobi</strong>
+                    <span class="text-slate-400">Diperbarui: 24 Mei 2025</span>
+                  </div>
+                  <button class="px-5 py-2.5 bg-primary-container hover:bg-primary text-white text-xs font-bold rounded-xl shadow transition flex items-center gap-1">
+                    <span>Baca Panduan</span>
+                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                  </button>
+                </div>
+              </div>
+              <div class="lg:col-span-5 bg-slate-100 min-h-[260px]">
+                <img class="w-full h-full object-cover" alt="Featured Article" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU3aMynR-Jzgux2XlDndRcI9GR9UYX91GguKprFtss8s7NQrbHE7-9nVqvYrskY7IRleqoV38-owZVvsGVXv160WlrmRLGhqMKaWDjecslO40zVjb_QtQGhigEnS84nk6RB5wkty6n_eDp4OqV-I97yV2tER6k9jGazssY-4MG1L6ebunCzsE3i7dJsoLuvkSpvCR0fZM60w58z9HbSsVKgSECgqNA1Wz7qr7B-lfzwljzdLRJntfA">
+              </div>
+            </div>
+          </div>
+
+          <!-- 6 Grid Articles -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-xl transition flex flex-col justify-between">
+              <div>
+                <img alt="Invoice" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAN4LUdAsoG3i5QDtJgCz1vKtLYrD0So3FYIlG18lOIhYxDcuZlthAGekCs768VVP-C5qojq3Hrdb7v2GqxKH7iftkoWGZBHUpwPUnXVMTrctoSG-i6Ut-XCUgBge2r9fJq9qMMLBlSTH8sk11SwxaeQnh77n_oq2rkoKWiHCjWh6UhPNGZ4gDfF7r1xXHEAaw0NYpl4gCklfHrmsej9j4evxtIKRKW2AcHhtSugXifeB6pjf4o4z6Z">
+                <div class="p-5 space-y-2">
+                  <span class="text-[10px] font-bold text-primary uppercase">INVOICE &amp; FINANCE • 5 Min</span>
+                  <h3 class="text-base font-bold text-slate-900 leading-snug">Cara Otomasi Invoice dan Pembayaran untuk Mempercepat Cashflow Toko Online</h3>
+                  <p class="text-xs text-slate-500 line-clamp-2">Eliminasi rekonsiliasi manual bukti transfer perbankan dan percepat penerbitan faktur pajak secara instan.</p>
+                </div>
+              </div>
+              <div class="p-5 pt-0">
+                <a href="#" class="text-primary font-bold text-xs hover:underline inline-flex items-center gap-1">Baca Selengkapnya →</a>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-xl transition flex flex-col justify-between">
+              <div>
+                <img alt="Chatbot" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU-BBr8_AIwln-KLzX1NqziP_decwS1_VVDEMgteIdZ8WLvOyoewPfdxZIuiOUgUKdLTvMlOdu-yRU0EN1K98Csxkv0Pjso-358xcXg2VLcDVElYu6fSU5XmwB8A0W4iR0QH9mmgPbpSkZ8jL4Z-jCSFPjlcDICN-gjD-yqV3ZefWRH-T8U5uMARWA1NFua3GCWguLQxIJsCnqaackRKyXUzD_Kw9V7lEkeoXnbJ2FpyLcp28aq5va">
+                <div class="p-5 space-y-2">
+                  <span class="text-[10px] font-bold text-secondary uppercase">OTOMASI CHATBOT AI • 6 Min</span>
+                  <h3 class="text-base font-bold text-slate-900 leading-snug">Strategi Membangun Chatbot CRM WhatsApp Cerdas yang Mampu Meningkatkan Closing Rate 40%</h3>
+                  <p class="text-xs text-slate-500 line-clamp-2">Kombinasi auto-reply pintar berdasar konteks produk, pengingat abandoned cart otomatis, dan closing.</p>
+                </div>
+              </div>
+              <div class="p-5 pt-0">
+                <a href="#" class="text-secondary font-bold text-xs hover:underline inline-flex items-center gap-1">Baca Selengkapnya →</a>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-xl transition flex flex-col justify-between">
+              <div>
+                <img alt="Logistics" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYM3RP3ofMl8lcUW4J3O2qR057OQdlQL18-Z5gt2pUGFIiyIRrcJDRdE_qLXr_HFKFyG-2Iqrq1DD4rq6WD_cokJZxxEj-cssFi2ixbNOieCCB_nSjRahRlvCN2EJXowNVhCpQ_HdzlZYV8A-mdRLBiXk1aBEkp23TG4Zp4e16eOJ8rQWtughZl6pxIyRPgd6sty2hOtAELkDL01z8l2S_js_ez0zbh9VZblqEnxkVaaSbLUeo7chz">
+                <div class="p-5 space-y-2">
+                  <span class="text-[10px] font-bold text-primary uppercase">LOGISTIK &amp; PENGIRIMAN • 7 Min</span>
+                  <h3 class="text-base font-bold text-slate-900 leading-snug">Efisiensi Biaya Logistik: Cetak Resi Massal dan Pemilihan Kurir Terbaik untuk Toko Online</h3>
+                  <p class="text-xs text-slate-500 line-clamp-2">Optimasi rute kurir ekspedisi, cetak 500 resi dalam 1 klik, serta integrasi tarif ongkos kirim termurah.</p>
+                </div>
+              </div>
+              <div class="p-5 pt-0">
+                <a href="#" class="text-primary font-bold text-xs hover:underline inline-flex items-center gap-1">Baca Selengkapnya →</a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- PAGE 5: CONTACT & HUBUNGI KAMI - EXACT IMAGE 5                            -->
+    <!-- ========================================================================= -->
+    <div id="page-contact" class="page-container w-full hidden">
+      
+      <!-- HERO CONTACT -->
+      <section class="relative w-full py-12 bg-surface-container-low border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <div class="lg:col-span-7 space-y-5">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white shadow-sm text-primary-container text-xs font-bold uppercase tracking-wider">
+                <span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>KONSULTASI ARSITEKTUR SISTEM &amp; DIGITAL SCALE-UP
+              </div>
+              <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                Konsultasikan Kebutuhan Integrasi &amp; <span class="text-primary-container">Otomasi E-Commerce Bisnis Anda</span>
+              </h1>
+              <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
+                Diskusikan modul arsitektur marketplace, sistem multi-kurir logistik, penagihan, CRM, dan chatbot WhatsApp bersama tim principal Moobi Eco.
+              </p>
+              <div class="flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-700">
+                <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-primary text-[18px]">verified</span><span>Respons Cepat &lt; 30 Menit</span></div>
+                <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-primary text-[18px]">security</span><span>Free NDA &amp; Technical Consultation</span></div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5 flex items-center justify-center">
+              <img src="moobi ecosystem/assets/assets pose4.png" alt="Contact Specialist" class="w-auto max-h-[380px] object-contain drop-shadow-2xl" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuB15O_GJ-EGUzk8ZSPaU7-MG9eW--G-LQCZF7KDXPZmc9y8OSRAtdgnrucFVAPBozufDUFS1yXt46iISuKzXZ9MfUMh1K-HeGbBoiskN5CnfBjH28tStrdSvoLTJxmILmYD36rjdtwr6adFvQXh55cOs9otArqzdAXx0_RwF3uDKrS8V1EPVh6A02BKYoDr410BcNuchniaVBqwO65FftIo-9ZcFgVUKHjVny2vhUP_HfyEAC3WaBilFRLgP9tKI441Og'">
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- INTERACTIVE CONSULTATION FORM SECTION -->
+      <section class="w-full py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div class="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 shadow-xl space-y-6">
+            <div class="border-b border-slate-100 pb-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-2xl font-extrabold text-slate-900">Formulir Kebutuhan Solusi E-Commerce</h3>
+                <span class="text-xs text-primary font-bold bg-blue-50 px-3 py-1 rounded-full border border-blue-200">Free Assessment</span>
+              </div>
+              <p class="text-xs text-slate-500 mt-1">Lengkapi formulir di bawah ini untuk mendapatkan estimasi skema arsitektur dan timeline implementasi.</p>
+            </div>
+
+            <form onsubmit="handleContactSubmit(event)" class="space-y-4 text-xs font-medium text-slate-700">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block font-bold mb-1">Nama Lengkap *</label>
+                  <input type="text" required placeholder="Contoh: Hendra Setiawan" class="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:border-brand-500">
+                </div>
+                <div>
+                  <label class="block font-bold mb-1">Email Bisnis *</label>
+                  <input type="email" required placeholder="hendra@perusahaan.co.id" class="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:border-brand-500">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block font-bold mb-1">Nomor WhatsApp Aktif *</label>
+                  <input type="tel" required placeholder="+62 812-xxxx-xxxx" class="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:border-brand-500">
+                </div>
+                <div>
+                  <label class="block font-bold mb-1">Nama Brand / Toko Online</label>
+                  <input type="text" placeholder="PT Digital Niaga Mandiri" class="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:border-brand-500">
+                </div>
+              </div>
+
+              <div>
+                <label class="block font-bold mb-1">Skala Operasional Saat Ini</label>
+                <select class="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs">
+                  <option>100 - 500 Order / Bulan (Growing Merchant)</option>
+                  <option>500 - 2.500 Order / Bulan (Scale Up Brand)</option>
+                  <option>&gt; 2.500 Order / Bulan (Enterprise Omnichannel)</option>
+                </select>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block font-bold mb-1">Layanan Utama yang Dibutuhkan</label>
+                  <select class="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs">
+                    <option>Suite Lengkap E-Commerce 6 Pilar</option>
+                    <option>Integrasi Multi-Channel &amp; Sync Stok</option>
+                    <option>Logistik Multi-Kurir &amp; Thermal Resi A6</option>
+                    <option>AI WhatsApp CS Chatbot 24/7</option>
+                    <option>Agentic Invoicing &amp; QRIS Otomatis</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block font-bold mb-1">Estimasi Anggaran</label>
+                  <select class="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs">
+                    <option>Rp 5 Juta - Rp 15 Juta</option>
+                    <option>Rp 15 Juta - Rp 30 Juta (Recommended Pro)</option>
+                    <option>&gt; Rp 30 Juta (Custom ERP)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block font-bold mb-1">Ceritakan Kebutuhan Proyek Anda</label>
+                <textarea rows="4" placeholder="Jelaskan kendala operasional toko saat ini, integrasi marketplace yang diinginkan..." class="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:border-brand-500"></textarea>
+              </div>
+
+              <button type="submit" class="w-full py-4 rounded-xl bg-primary-container hover:bg-primary text-white font-bold text-sm shadow-lg shadow-primary-container/25 transition">
+                Kirim Permintaan Konsultasi Gratis
+              </button>
+            </form>
+          </div>
+
+          <!-- 3 Tech Hubs Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-12">
+            <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+              <span class="text-[10px] font-bold text-primary uppercase bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">JAKARTA TECH HUB</span>
+              <h4 class="font-bold text-slate-900 text-base">Tower Cyber 2</h4>
+              <p class="text-xs text-slate-500">Lt. 18, Jl. HR Rasuna Said, Kuningan, Jakarta Selatan</p>
+            </div>
+            <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+              <span class="text-[10px] font-bold text-secondary uppercase bg-purple-50 px-2.5 py-0.5 rounded border border-purple-200">SURABAYA OFFICE</span>
+              <h4 class="font-bold text-slate-900 text-base">Spazio Tower</h4>
+              <p class="text-xs text-slate-500">Lt. 8, Jl. Mayjen Yono Suwoyo, Surabaya Barat</p>
+            </div>
+            <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+              <span class="text-[10px] font-bold text-green-700 uppercase bg-green-50 px-2.5 py-0.5 rounded border border-green-200">DIRECT KANAL WA</span>
+              <h4 class="font-bold text-slate-900 text-base">+62 812-9988-7720</h4>
+              <p class="text-xs text-slate-500">hello@moobi.id • Senin - Sabtu 08.30 - 19.00 WIB</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- WORKSPACE VIEW: 6 INTERACTIVE OPERATIONAL MODULES (KOMERCE-STYLE)         -->
+    <!-- ========================================================================= -->
+    <div id="page-workspace" class="page-container w-full hidden min-h-[calc(100vh-140px)] bg-[#f4f7fb] py-6 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto space-y-6">
+
+        <!-- Workspace Header Card -->
+        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 to-brand-500 text-white flex items-center justify-center font-extrabold text-xl shadow-md">
+              <span class="material-symbols-outlined text-[26px]" id="currentModuleIcon">receipt_long</span>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-brand-50 text-brand-600 border border-brand-200" id="currentModuleBadge">MODUL 01 • INVOICING</span>
+                <span class="text-xs text-slate-400">Sandbox Terhubung Real-Time</span>
+              </div>
+              <h1 class="text-xl sm:text-2xl font-black text-slate-900" id="currentModuleTitle">Agentic Invoice &amp; Dynamic QRIS Generator</h1>
+              <p class="text-xs text-slate-500 mt-0.5" id="currentModuleDesc">Parsing otomatis chat pesanan WhatsApp pembeli menjadi faktur digital ber-QRIS dalam 3 detik.</p>
+            </div>
+          </div>
+
+          <!-- Merchant Fast Status Bar -->
+          <div class="flex flex-wrap items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200 text-xs">
+            <div class="px-2.5 py-1">
+              <span class="text-slate-400 block text-[10px] uppercase font-bold">Toko Aktif</span>
+              <span class="font-bold text-slate-800 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Batik Nusantara Official</span>
+            </div>
+            <div class="h-6 w-px bg-slate-200 hidden sm:block"></div>
+            <div class="px-2.5 py-1">
+              <span class="text-slate-400 block text-[10px] uppercase font-bold">Saldo Dompet COD/QRIS</span>
+              <span class="font-black text-brand-600" id="walletBalance">Rp 14.850.000</span>
+            </div>
+            <div class="h-6 w-px bg-slate-200 hidden sm:block"></div>
+            <button onclick="resetWorkspaceDemo()" class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 hover:bg-slate-100 font-semibold text-slate-700 transition flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">refresh</span> Reset Demo
+            </button>
+          </div>
+        </div>
+
+        <!-- ================= MODUL 1: AGENTIC INVOICE ================= -->
+        <div id="moduleAgenticInvoice" class="workspace-module-panel space-y-6">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <div class="lg:col-span-6 bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-5">
+              <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
+                  <h3 class="font-bold text-slate-900 text-base">Input Chat WhatsApp Mentah Pembeli</h3>
+                </div>
+                <span class="text-[11px] font-semibold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200">AI Chat Extraction Engine</span>
+              </div>
+
+              <div class="space-y-2">
+                <label class="text-xs font-bold text-slate-600 flex items-center justify-between">
+                  <span>Pilih Contoh Percakapan WhatsApp:</span>
+                  <span class="text-[11px] font-normal text-slate-400">Klik untuk memuat preset</span>
+                </label>
+                <div class="grid grid-cols-3 gap-2">
+                  <button onclick="loadChatPreset(1)" class="p-2 text-left rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50 transition text-xs flex flex-col justify-between">
+                    <span class="font-bold text-slate-800">Preset 1: Fashion</span>
+                    <span class="text-[10px] text-slate-500">2 Baju Batik + J&amp;T</span>
+                  </button>
+                  <button onclick="loadChatPreset(2)" class="p-2 text-left rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50 transition text-xs flex flex-col justify-between">
+                    <span class="font-bold text-slate-800">Preset 2: Kosmetik</span>
+                    <span class="text-[10px] text-slate-500">Serum Skincare + SiCepat</span>
+                  </button>
+                  <button onclick="loadChatPreset(3)" class="p-2 text-left rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50 transition text-xs flex flex-col justify-between">
+                    <span class="font-bold text-slate-800">Preset 3: F&amp;B Kopi</span>
+                    <span class="text-[10px] text-slate-500">5 Pcs Arabica + JNE</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="space-y-1.5">
+                <label class="text-xs font-bold text-slate-700">Teks Chat Transaksi:</label>
+                <textarea id="chatInputArea" rows="6" class="w-full text-xs font-mono p-3.5 bg-slate-50 border border-slate-200 rounded-2xl focus:bg-white focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition leading-relaxed text-slate-800" placeholder="Tempel chat pembeli di sini..."></textarea>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-3 pt-2">
+                <button onclick="parseChatWithAi()" id="btnParseAi" class="flex-1 py-3 px-4 rounded-xl bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-bold text-xs shadow-md shadow-brand-500/20 transition flex items-center justify-center gap-2">
+                  <span class="material-symbols-outlined text-[18px]">neurology</span> Ekstrak Data &amp; Terbitkan Invoice Instan
+                </button>
+                <button onclick="clearChatInput()" class="py-3 px-4 rounded-xl border border-slate-200 hover:bg-slate-100 text-slate-600 font-semibold text-xs transition">
+                  Bersihkan
+                </button>
+              </div>
+
+              <div class="space-y-2 pt-2">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="font-bold text-slate-700 flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[16px] text-brand-600">code</span>
+                    Hasil Ekstraksi Entitas AI (JSON):
+                  </span>
+                  <span class="text-[10px] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Confidence: 99.4%</span>
+                </div>
+                <div class="bg-slate-900 text-slate-200 font-mono text-[11px] p-3.5 rounded-2xl overflow-x-auto max-h-40 custom-scrollbar">
+                  <pre id="jsonPreviewArea">{
+  "status": "ready",
+  "customer": "Rian Ardiansyah",
+  "phone": "081288991234",
+  "address": "Jl. Senopati No. 45, Kebayoran Baru, Jakarta Selatan",
+  "items": [
+    { "sku": "BTK-MGM-L", "name": "Batik Mega Mendung Premium (Size L)", "qty": 2, "price": 185000 }
+  ],
+  "courier": "J&T Express - Regular",
+  "shipping_cost": 15000,
+  "grand_total": 385000
+}</pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Digital Invoice Card -->
+            <div class="lg:col-span-6 space-y-4">
+              <div class="bg-white rounded-3xl border-2 border-brand-200 p-6 sm:p-8 shadow-xl relative overflow-hidden">
+                <div class="absolute top-6 right-6">
+                  <span id="invoiceStatusBadge" class="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-amber-100 text-amber-800 border border-amber-300 shadow-sm flex items-center gap-1">
+                    <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span> MENUNGGU PEMBAYARAN
+                  </span>
+                </div>
+
+                <div class="flex items-center gap-3 pb-6 border-b border-slate-100">
+                  <div class="w-10 h-10 rounded-xl bg-brand-500 text-white flex items-center justify-center font-bold">
+                    <span class="material-symbols-outlined text-[20px]">receipt</span>
+                  </div>
+                  <div>
+                    <h4 class="font-extrabold text-slate-900 text-base" id="invoiceNumber">INV/2025/MOOBI/0984</h4>
+                    <p class="text-xs text-slate-400">Batik Nusantara Official • PT Ekosistem Digital Kreasi</p>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 py-4 border-b border-slate-100 text-xs">
+                  <div>
+                    <span class="text-slate-400 block text-[10px] uppercase font-bold">Ditujukan Kepada:</span>
+                    <strong class="text-slate-800 font-bold block text-sm" id="invCustomerName">Rian Ardiansyah</strong>
+                    <span class="text-slate-500 font-mono" id="invCustomerPhone">0812-8899-1234</span>
+                    <p class="text-slate-600 mt-1 line-clamp-2" id="invCustomerAddress">Jl. Senopati No. 45, Kebayoran Baru, Jakarta Selatan (12190)</p>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-slate-400 block text-[10px] uppercase font-bold">Tanggal &amp; Kurir:</span>
+                    <span class="text-slate-700 font-medium block" id="invDate">11 September 2025</span>
+                    <span class="inline-block mt-1 bg-blue-50 text-brand-700 font-semibold px-2 py-0.5 rounded text-[11px] border border-blue-200" id="invCourier">J&amp;T Express (Reguler)</span>
+                  </div>
+                </div>
+
+                <div class="py-4 space-y-3">
+                  <div class="text-xs font-bold text-slate-700 uppercase tracking-wider">Rincian Pembelian:</div>
+                  <div id="invItemsList" class="space-y-2 text-xs"></div>
+
+                  <div class="space-y-1.5 pt-2 text-xs">
+                    <div class="flex items-center justify-between text-slate-500">
+                      <span>Subtotal Produk</span>
+                      <span id="invSubtotal" class="font-semibold text-slate-800">Rp 370.000</span>
+                    </div>
+                    <div class="flex items-center justify-between text-slate-500">
+                      <span>Ongkos Kirim J&amp;T Express</span>
+                      <span id="invShipping" class="font-semibold text-slate-800">Rp 15.000</span>
+                    </div>
+                    <div class="flex items-center justify-between text-slate-500">
+                      <span>Biaya Layanan &amp; Asuransi</span>
+                      <span class="font-semibold text-emerald-600">GRATIS (Moobi Promo)</span>
+                    </div>
+                    <div class="flex items-center justify-between text-base font-extrabold text-slate-900 pt-3 border-t-2 border-dashed border-slate-200">
+                      <span>Total Tagihan (Nett)</span>
+                      <span id="invGrandTotal" class="text-brand-600 text-lg">Rp 385.000</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Dynamic QRIS Block -->
+                <div class="mt-4 p-4 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 flex flex-col sm:flex-row items-center gap-4">
+                  <div class="bg-white p-2.5 rounded-xl border border-blue-200 shadow-sm shrink-0 text-center">
+                    <div class="w-24 h-24 bg-slate-900 p-1.5 rounded-lg flex items-center justify-center">
+                      <svg viewBox="0 0 100 100" class="w-full h-full fill-white">
+                        <rect x="0" y="0" width="30" height="30" />
+                        <rect x="5" y="5" width="20" height="20" fill="#0f172a" />
+                        <rect x="70" y="0" width="30" height="30" />
+                        <rect x="75" y="5" width="20" height="20" fill="#0f172a" />
+                        <rect x="0" y="70" width="30" height="30" />
+                        <rect x="5" y="75" width="20" height="20" fill="#0f172a" />
+                        <rect x="35" y="10" width="10" height="20" />
+                        <rect x="50" y="5" width="15" height="10" />
+                        <rect x="35" y="40" width="30" height="30" />
+                        <rect x="70" y="45" width="25" height="15" />
+                        <rect x="10" y="40" width="15" height="20" />
+                        <rect x="70" y="70" width="25" height="25" />
+                        <rect x="40" y="75" width="20" height="15" />
+                      </svg>
+                    </div>
+                    <span class="text-[9px] font-bold text-slate-700 block mt-1 uppercase">QRIS STANDAR BI</span>
+                  </div>
+                  <div class="space-y-1 text-center sm:text-left flex-1">
+                    <span class="text-xs font-bold text-slate-800 block">Scan QRIS BCA / Mandiri / GoPay / OVO</span>
+                    <p class="text-[11px] text-slate-500 leading-snug">QR dinamis auto-verifikasi lunas dalam 2 detik. Mutasi kas rekening otomatis masuk ke dashboard Moobi.</p>
+                    <div class="pt-2 flex flex-wrap gap-2 justify-center sm:justify-start">
+                      <button onclick="simulatePaymentSuccess()" id="btnSimulatePay" class="px-3.5 py-1.5 bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-white font-bold text-xs rounded-xl shadow transition flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-[16px]">check_circle</span> Simulasi Pembayaran Sukses
+                      </button>
+                      <button onclick="copyInvoiceLink()" class="px-3 py-1.5 bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 font-semibold text-xs rounded-xl transition flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">share</span> Kirim Link WA
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ================= MODUL 2: AI CHATBOT CS 24/7 ================= -->
+        <div id="moduleChatbotCs" class="workspace-module-panel hidden space-y-6">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <div class="lg:col-span-5 bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-5">
+              <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-purple-500 inline-block"></span>
+                  <h3 class="font-bold text-slate-900 text-base">Konfigurasi AI CS Agent</h3>
+                </div>
+                <span class="text-[11px] font-bold text-purple-600 bg-purple-50 px-2.5 py-1 rounded-full border border-purple-200">Prism Engine v2.4</span>
+              </div>
+
+              <div class="space-y-2">
+                <label class="text-xs font-bold text-slate-700">Personality &amp; Gaya Komunikasi Bot:</label>
+                <select class="w-full text-xs p-3 bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-800">
+                  <option>Ramah, Sopan &amp; Persuasif (Recommended untuk Retail &amp; Fashion)</option>
+                  <option>Profesional &amp; Ringkas (B2B, Wholesale &amp; Korporasi)</option>
+                  <option>Kasual &amp; Hangat (Gen-Z, Beauty &amp; Skincare)</option>
+                </select>
+              </div>
+
+              <div class="space-y-2 pt-2">
+                <label class="text-xs font-bold text-slate-700">Contoh Pertanyaan Cepat Pembeli:</label>
+                <div class="flex flex-col gap-1.5">
+                  <button onclick="sendQuickBotQuery('Halo kak, gamis silk warna emerald size XL masih ready?')" class="text-left text-xs p-2.5 rounded-xl bg-blue-50/70 hover:bg-blue-100 text-brand-800 font-medium border border-blue-200/80 transition">
+                    👉 "Halo kak, gamis silk warna emerald size XL masih ready?"
+                  </button>
+                  <button onclick="sendQuickBotQuery('Berapa ongkir ke Surabaya pakai SiCepat?')" class="text-left text-xs p-2.5 rounded-xl bg-blue-50/70 hover:bg-blue-100 text-brand-800 font-medium border border-blue-200/80 transition">
+                    👉 "Berapa ongkir ke Surabaya pakai SiCepat?"
+                  </button>
+                  <button onclick="sendQuickBotQuery('Bisa minta nomor rekening / QRIS untuk pembayaran?')" class="text-left text-xs p-2.5 rounded-xl bg-blue-50/70 hover:bg-blue-100 text-brand-800 font-medium border border-blue-200/80 transition">
+                    👉 "Bisa minta nomor rekening / QRIS untuk pembayaran?"
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- WhatsApp Chat Simulator -->
+            <div class="lg:col-span-7 bg-[#efeae2] rounded-3xl border border-slate-300 shadow-xl overflow-hidden flex flex-col h-[560px]">
+              <div class="bg-[#005e54] text-white p-3.5 px-5 flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-emerald-700 flex items-center justify-center text-white font-bold">
+                    <span class="material-symbols-outlined text-[22px]">smart_toy</span>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-1.5 font-bold text-sm">
+                      <span>Moobi AI Assistant</span>
+                      <span class="material-symbols-outlined text-green-300 text-[16px]">verified</span>
+                    </div>
+                    <span class="text-[10px] text-green-100">Official Business Account • Online 24/7</span>
+                  </div>
+                </div>
+              </div>
+
+              <div id="chatMessageHistory" class="flex-1 p-4 overflow-y-auto space-y-3 custom-scrollbar">
+                <div class="flex justify-start">
+                  <div class="bg-white text-slate-800 p-3 rounded-2xl rounded-tl-none max-w-sm shadow-sm text-xs space-y-1">
+                    <p class="leading-relaxed">Halo kak! Selamat datang di <strong>Batik Nusantara Official</strong> ✨ Saya asisten digital Moobi. Ada yang bisa saya bantu untuk katalog produk, cek stok, atau hitung ongkir hari ini?</p>
+                    <span class="text-[9px] text-slate-400 block text-right">09:15</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-[#f0f2f5] p-3 flex items-center gap-2 border-t border-slate-300">
+                <input id="userChatMessageInput" type="text" onkeydown="if(event.key==='Enter') sendUserChat()" placeholder="Ketik pesan untuk AI CS Bot..." class="flex-1 text-xs py-2.5 px-4 rounded-full bg-white border border-slate-300 focus:outline-none">
+                <button onclick="sendUserChat()" class="w-10 h-10 rounded-full bg-[#00a884] text-white flex items-center justify-center shadow transition shrink-0">
+                  <span class="material-symbols-outlined text-[18px]">send</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ================= MODUL 3: SMART CRM ================= -->
+        <div id="moduleSmartCrm" class="workspace-module-panel hidden space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex items-center justify-between">
+              <div>
+                <span class="text-xs font-bold uppercase text-slate-500">Total Kontak CRM</span>
+                <div class="text-2xl font-black text-slate-900 mt-1">4.820</div>
+                <span class="text-[11px] text-emerald-600 font-semibold">+18% bulan ini</span>
+              </div>
+              <div class="w-11 h-11 rounded-xl bg-blue-50 text-brand-600 flex items-center justify-center">
+                <span class="material-symbols-outlined text-[24px]">contacts</span>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex items-center justify-between">
+              <div>
+                <span class="text-xs font-bold uppercase text-slate-500">Segmen Champions</span>
+                <div class="text-2xl font-black text-emerald-600 mt-1">640</div>
+                <span class="text-[11px] text-slate-500">Belanja &gt; 5x / tahun</span>
+              </div>
+              <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                <span class="material-symbols-outlined text-[24px]">workspace_premium</span>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex items-center justify-between">
+              <div>
+                <span class="text-xs font-bold uppercase text-slate-500">At Risk</span>
+                <div class="text-2xl font-black text-amber-600 mt-1">890</div>
+                <span class="text-[11px] text-slate-500">Tidak belanja &gt; 60 hari</span>
+              </div>
+              <div class="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+                <span class="material-symbols-outlined text-[24px]">warning</span>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex items-center justify-between">
+              <div>
+                <span class="text-xs font-bold uppercase text-slate-500">Konversi Broadcast</span>
+                <div class="text-2xl font-black text-purple-600 mt-1">38.4%</div>
+                <span class="text-[11px] text-emerald-600 font-semibold">ROI 6.8x</span>
+              </div>
+              <div class="w-11 h-11 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
+                <span class="material-symbols-outlined text-[24px]">trending_up</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            <div class="lg:col-span-7 bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
+              <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <h3 class="font-bold text-slate-900 text-base">Database Pelanggan &amp; RFM Clustering</h3>
+                <input type="text" id="crmSearchInput" oninput="filterCrmTable()" placeholder="Cari nama / nomor..." class="text-xs px-3 py-1.5 rounded-xl border border-slate-200 w-44">
+              </div>
+              <div class="overflow-x-auto rounded-2xl border border-slate-200">
+                <table class="w-full text-left text-xs border-collapse">
+                  <thead class="bg-slate-50 text-slate-600 font-bold border-b border-slate-200">
+                    <tr>
+                      <th class="p-3">Pelanggan</th>
+                      <th class="p-3">Segmen RFM</th>
+                      <th class="p-3 text-right">Total Belanja</th>
+                      <th class="p-3 text-right">Poin</th>
+                    </tr>
+                  </thead>
+                  <tbody id="crmCustomerTableBody" class="divide-y divide-slate-100 font-medium text-slate-700"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5 bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
+              <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <h3 class="font-bold text-slate-900 text-base">WhatsApp Broadcast Campaign</h3>
+                <span class="text-[10px] font-bold bg-green-50 text-green-700 px-2 py-0.5 rounded border border-green-200">Official API</span>
+              </div>
+              <div class="space-y-3">
+                <textarea id="broadcastTemplateText" rows="5" class="w-full text-xs p-3 font-mono rounded-xl bg-slate-50 border border-slate-200 text-slate-800 leading-relaxed">Halo Kak {{nama}}! ✨
+Khusus hari ini sebagai pelanggan {{segmen}}, nikmati voucher spesial Rp 50.000 dengan kode: BATIKVIP50.
+Klaim di: https://moobi.link/batik-vip</textarea>
+                <button onclick="triggerBroadcastSimulation()" id="btnStartBroadcast" class="w-full py-3 px-4 rounded-xl bg-green-600 hover:bg-green-700 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2">
+                  <span class="material-symbols-outlined text-[18px]">send</span> Mulai Kirim Broadcast
+                </button>
+                <div id="broadcastProgressBox" class="hidden p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                  <div class="flex items-center justify-between text-xs">
+                    <span class="font-bold text-slate-800">Mengirim Pesan WA...</span>
+                    <span id="broadcastProgressText" class="font-mono font-bold text-green-700">0 / 640 Terkirim</span>
+                  </div>
+                  <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
+                    <div id="broadcastProgressBar" class="h-full bg-green-500 transition-all duration-300 w-0"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= MODUL 4: LOGISTIK & CETAK RESI A6 ================= -->
+        <div id="moduleLogisticsShip" class="workspace-module-panel hidden space-y-6">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <div class="lg:col-span-4 bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
+              <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <h3 class="font-bold text-slate-900 text-base">Cek Ongkir Multi-Kurir</h3>
+                <span class="text-[10px] font-bold bg-blue-50 text-brand-700 px-2 py-0.5 rounded border border-blue-200">Diskon s.d 25%</span>
+              </div>
+              <div class="space-y-3 text-xs">
+                <div>
+                  <label class="font-bold text-slate-700 block mb-1">Kota / Kecamatan Tujuan:</label>
+                  <select id="shippingDestSelect" onchange="calculateShippingRates()" class="w-full p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800">
+                    <option value="jakarta">Jakarta Selatan - Kebayoran Baru</option>
+                    <option value="surabaya">Surabaya - Gubeng</option>
+                    <option value="medan">Medan - Medan Kota</option>
+                    <option value="makassar">Makassar - Panakkukang</option>
+                    <option value="bali">Denpasar - Sanur</option>
+                  </select>
+                </div>
+              </div>
+              <div id="courierRatesList" class="space-y-2 text-xs pt-2"></div>
+            </div>
+
+            <div class="lg:col-span-8 bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
+              <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <div>
+                  <h3 class="font-bold text-slate-900 text-base">Antrean Cetak Resi &amp; Pick Up Gudang</h3>
+                  <p class="text-xs text-slate-500">Pilih pesanan siap kirim untuk request kurir &amp; cetak label thermal A6</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button onclick="requestBatchPickup()" class="px-3.5 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs shadow-sm transition flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[16px]">local_shipping</span> Request Pick Up (3)
+                  </button>
+                  <button onclick="openThermalLabelModal()" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow-sm transition flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[16px]">print</span> Cetak Label A6
+                  </button>
+                </div>
+              </div>
+              <div class="overflow-x-auto rounded-2xl border border-slate-200">
+                <table class="w-full text-left text-xs border-collapse">
+                  <thead class="bg-slate-50 text-slate-600 font-bold border-b border-slate-200">
+                    <tr>
+                      <th class="p-3 text-center"><input type="checkbox" checked class="rounded text-brand-500"></th>
+                      <th class="p-3">No. Pesanan / Resi</th>
+                      <th class="p-3">Penerima &amp; Kota</th>
+                      <th class="p-3">Ekspedisi</th>
+                      <th class="p-3">Status</th>
+                      <th class="p-3 text-center">Label</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ordersFulfillmentTableBody" class="divide-y divide-slate-100 font-medium text-slate-700"></tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ================= MODUL 5: MULTI-CHANNEL SYNC ================= -->
+        <div id="moduleChannelSync" class="workspace-module-panel hidden space-y-6">
+          <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-5">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+              <div>
+                <h3 class="font-bold text-slate-900 text-base">Sentralisasi Stok &amp; Multi-Channel Sync Engine</h3>
+                <p class="text-xs text-slate-500 mt-0.5">Satu kali pembaruan inventori otomatis tersinkronisasi ke Shopee, Tokopedia, TikTok Shop, dan Web Mandiri.</p>
+              </div>
+              <div class="flex flex-wrap items-center gap-2">
+                <button onclick="simulateMarketplaceSale('Shopee')" class="px-3.5 py-2 rounded-xl bg-[#ee4d2d] hover:bg-[#d73211] text-white font-bold text-xs shadow-sm transition flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-[16px]">shopping_bag</span> Simulasi 1x Terjual di Shopee
+                </button>
+                <button onclick="simulateMarketplaceSale('TikTok')" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow-sm transition flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-[16px]">play_circle</span> Simulasi 1x Terjual di TikTok
+                </button>
+              </div>
+            </div>
+            <div class="overflow-x-auto rounded-2xl border border-slate-200">
+              <table class="w-full text-left text-xs border-collapse">
+                <thead class="bg-slate-50 text-slate-600 font-bold border-b border-slate-200">
+                  <tr>
+                    <th class="p-3.5">SKU &amp; Nama Produk</th>
+                    <th class="p-3.5 text-center">Stok Master</th>
+                    <th class="p-3.5 text-center text-[#ee4d2d]">Stok Shopee</th>
+                    <th class="p-3.5 text-center text-[#00aa5b]">Stok Tokopedia</th>
+                    <th class="p-3.5 text-center text-slate-900">Stok TikTok</th>
+                    <th class="p-3.5 text-center text-brand-600">Stok Web Store</th>
+                    <th class="p-3.5 text-center">Status Sync</th>
+                  </tr>
+                </thead>
+                <tbody id="inventorySyncTableBody" class="divide-y divide-slate-100 font-medium text-slate-700"></tbody>
+              </table>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-900 text-slate-300 font-mono text-[11px] space-y-1">
+              <span class="font-bold text-slate-400 block pb-1 border-b border-slate-800">Live Webhook Log Terminal:</span>
+              <div id="syncLogTerminal" class="space-y-0.5 pt-1 text-slate-300 max-h-24 overflow-y-auto custom-scrollbar">
+                <p class="text-emerald-400">[09:30:12] Webhook received from Tokopedia: SKU BTK-MGM-L stock synced to 18 pcs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= MODUL 6: FINANCIAL ANALYTICS ================= -->
+        <div id="moduleAnalyticsFinance" class="workspace-module-panel hidden space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+              <span class="text-xs font-bold uppercase text-slate-500">Gross Merchandise Value (GMV)</span>
+              <div class="text-2xl font-black text-slate-900 mt-1">Rp 148.650.000</div>
+              <span class="text-[11px] text-emerald-600 font-semibold">+24.5% vs bulan lalu</span>
+            </div>
+            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+              <span class="text-xs font-bold uppercase text-slate-500">Laba Bersih Setelah Biaya</span>
+              <div class="text-2xl font-black text-emerald-600 mt-1">Rp 42.180.000</div>
+              <span class="text-[11px] text-slate-500">Net Margin: 28.3%</span>
+            </div>
+            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+              <span class="text-xs font-bold uppercase text-slate-500">Total Paket Terkirim</span>
+              <div class="text-2xl font-black text-brand-600 mt-1">1.428 Paket</div>
+              <span class="text-[11px] text-emerald-600 font-semibold">99.8% Tepat Waktu</span>
+            </div>
+            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+              <span class="text-xs font-bold uppercase text-slate-500">Tingkat Retur (RTS) COD</span>
+              <div class="text-2xl font-black text-slate-800 mt-1">0.8%</div>
+              <span class="text-[11px] text-emerald-600 font-semibold">Aman di bawah 3%</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= THERMAL A6 SHIPPING LABEL MODAL (PRINTABLE) ================= -->
+  <div id="thermalLabelModal" class="fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200 no-print">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-slate-800 text-[22px]">print</span>
+          <h3 class="font-extrabold text-slate-900 text-base">Thermal Label Preview (Standar A6)</h3>
+        </div>
+        <button onclick="closeThermalLabelModal()" class="text-slate-400 hover:text-slate-700">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div id="printableA6Label" class="border-2 border-dashed border-slate-900 p-5 rounded-2xl bg-white text-slate-900 font-sans space-y-3">
+        <div class="flex items-center justify-between pb-2 border-b-2 border-slate-900">
+          <div class="flex items-center gap-2">
+            <span class="text-xl font-black tracking-tight">J&amp;T Express</span>
+            <span class="text-[10px] font-bold bg-slate-900 text-white px-2 py-0.5 rounded">EZ / REGULER</span>
+          </div>
+          <div class="text-right">
+            <span class="text-[10px] font-bold uppercase block">NON-COD</span>
+            <span class="text-xs font-black">LUNAS (QRIS)</span>
+          </div>
+        </div>
+        <div class="text-center py-2 border-b-2 border-slate-900">
+          <div class="h-12 w-full bg-slate-900 flex items-center justify-center text-white font-mono text-xs tracking-widest">
+            ||| | |||| | | |||||| | |||| | ||| |||| | ||
+          </div>
+          <span class="font-mono text-sm font-black tracking-wider block mt-1">JT982173619283ID</span>
+        </div>
+        <div class="grid grid-cols-2 gap-3 text-xs pb-2 border-b-2 border-slate-900">
+          <div>
+            <span class="text-[9px] font-bold uppercase text-slate-500 block">PENERIMA:</span>
+            <strong class="text-sm font-black block">Rian Ardiansyah</strong>
+            <span class="font-mono text-[11px] font-bold">0812-8899-1234</span>
+            <p class="text-[10px] text-slate-700 mt-0.5 leading-snug">Jl. Senopati No. 45, Kebayoran Baru, Jakarta Selatan, 12190</p>
+          </div>
+          <div>
+            <span class="text-[9px] font-bold uppercase text-slate-500 block">PENGIRIM:</span>
+            <strong class="text-sm font-black block">Batik Nusantara</strong>
+            <span class="font-mono text-[11px] font-bold">0812-9988-7720</span>
+            <p class="text-[10px] text-slate-700 mt-0.5 leading-snug">Hub Gambir Jakarta Pusat, DKI Jakarta 10110</p>
+          </div>
+        </div>
+        <div class="text-xs pb-1">
+          <span class="text-[9px] font-bold uppercase text-slate-500 block">ISI PAKET:</span>
+          <div class="flex justify-between font-bold text-[11px]">
+            <span>1. Batik Mega Mendung Premium (Size L) x2</span>
+            <span>0.6 Kg</span>
+          </div>
+        </div>
+        <div class="pt-2 border-t-2 border-slate-900 flex items-center justify-between text-xs font-black">
+          <span>SORTIR: JKT-KB-02</span>
+          <span>WEIGHT: 1.00 KG</span>
+          <span>MOOBI ECO 2025</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-2 no-print">
+        <button onclick="closeThermalLabelModal()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50">Tutup</button>
+        <button onclick="window.print()" class="px-5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold flex items-center gap-1.5 shadow">
+          <span class="material-symbols-outlined text-[16px]">print</span> Cetak Label
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= GLOBAL FOOTER MATCHING SCREEN DESIGN ================= -->
+  <footer class="w-full bg-[#071330] text-slate-300 text-xs border-t border-slate-800 pt-16 pb-12 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800">
+        
+        <div class="lg:col-span-4 space-y-4">
+          <div class="flex items-center gap-2">
+            <img alt="Moobi Logo" class="h-9 w-auto object-contain" src="moobi ecosystem/assets/moobi.png" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuAkNBAEahhJWRB9osfjGSndVX-G01pudMoy2OJ-PTpBJNt9paiW65pRa1bpffQ1O8AeCiZGKj3FjP7SLM02GikiiZcAuJm3xvMk0_4kcfIY81p5AiEnLMxblzlH48iSaYCmbDSov-Kq83DLNutRlmS6hO_bZ-wspzpvWS7yLJP_rV60R3xigJI6IwnGMY296RPn_pW_wiqK_nS9tHFnhLMf_T_7Fw-Tej4KFOyOce8mXLcF7W200iiznJFHS2YlBOMHFw'">
+            <span class="font-extrabold text-white text-lg tracking-tight">Moobi <span class="text-primary-container">Eco</span></span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed max-w-sm font-normal">
+            Moobi - Software House &amp; Digital Product Agency. Menghadirkan solusi pembuatan website modern, aplikasi mobile iOS &amp; Android, sistem ERP/CRM, serta integrasi digital berstandar enterprise.
+          </p>
+          <div class="flex flex-col gap-2 pt-1">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-950/60 border border-blue-800/40 text-[11px] text-blue-300 w-fit">
+              <span class="material-symbols-outlined text-[14px] text-blue-400">verified_user</span> ISO 27001 Security
+            </div>
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-950/60 border border-blue-800/40 text-[11px] text-cyan-300 w-fit">
+              <span class="material-symbols-outlined text-[14px] text-cyan-400">shield</span> SLA &amp; Bug-Free Guarantee
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-3 space-y-3.5">
+          <h5 class="text-sm font-bold text-white flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-blue-500"></span> Layanan &amp; Solusi
+          </h5>
+          <ul class="space-y-2.5 text-slate-400">
+            <li><a href="javascript:void(0)" onclick="navigateToPage('product')" class="hover:text-white transition">Web Bisnis &amp; Company Profile</a></li>
+            <li><a href="javascript:void(0)" onclick="navigateToPage('product')" class="hover:text-white transition">Aplikasi iOS &amp; Android</a></li>
+            <li><a href="javascript:void(0)" onclick="navigateToPage('product')" class="hover:text-white transition">Web Apps &amp; Custom ERP/CRM</a></li>
+            <li><a href="javascript:void(0)" onclick="navigateToPage('product')" class="hover:text-white transition">E-Commerce &amp; Payment Gateway</a></li>
+            <li><a href="javascript:void(0)" onclick="navigateToPage('product')" class="hover:text-white transition">UI/UX Design &amp; Prototyping</a></li>
+            <li><a href="javascript:void(0)" onclick="navigateToPage('product')" class="hover:text-white transition">Cloud DevOps &amp; API</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-2 space-y-3.5">
+          <h5 class="text-sm font-bold text-white flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-blue-500"></span> Perusahaan
+          </h5>
+          <ul class="space-y-2.5 text-slate-400">
+            <li><a href="javascript:void(0)" onclick="navigateToPage('profile')" class="hover:text-white transition">Tentang Moobi</a></li>
+            <li><a href="javascript:void(0)" onclick="navigateToPage('home')" class="hover:text-white transition">Studi Kasus &amp; Portofolio</a></li>
+            <li><a href="javascript:void(0)" onclick="navigateToPage('profile')" class="hover:text-white transition">Rekayasa Teknologi &amp; Stack</a></li>
+            <li><a href="javascript:void(0)" onclick="navigateToPage('blog')" class="hover:text-white transition">Blog &amp; Berita Software</a></li>
+            <li><a href="javascript:void(0)" onclick="navigateToPage('profile')" class="hover:text-white transition">Karir &amp; Lab Riset</a></li>
+            <li><a href="javascript:void(0)" onclick="navigateToPage('contact')" class="hover:text-white transition">Syarat &amp; Ketentuan</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-3 space-y-3.5">
+          <h5 class="text-sm font-bold text-white flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-blue-500"></span> Kontak &amp; Tech Hub
+          </h5>
+          <div class="space-y-3 text-slate-400">
+            <p class="flex items-start gap-2.5">
+              <span class="material-symbols-outlined text-blue-400 text-[18px] shrink-0 mt-0.5">domain</span>
+              <span>Tower Cyber 2 Lt. 18, Jl. HR Rasuna Said, Kuningan, Jakarta Selatan</span>
+            </p>
+            <p class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-blue-400 text-[18px]">mail</span>
+              <a href="mailto:hello@moobi.id" class="hover:text-white">hello@moobi.id</a>
+            </p>
+            <p class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-blue-400 text-[18px]">chat</span>
+              <a href="https://wa.me/6281299887720" target="_blank" class="hover:text-white">+62 812-9988-7720</a>
+            </p>
+            <p class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-cyan-400 text-[18px]">schedule</span>
+              <span>Senin - Sabtu 08.30 - 19.00 WIB</span>
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col md:flex-row items-center justify-between text-slate-500 text-[11px] gap-4">
+        <div>© 2025 Moobi (PT Ekosistem Digital Kreasi). Hak Cipta Dilindungi Undang-Undang.</div>
+        <div class="flex items-center gap-4 sm:gap-6">
+          <a href="#" class="hover:text-white transition">Kebijakan Privasi</a>
+          <span>•</span>
+          <a href="#" class="hover:text-white transition">Ketentuan Layanan</a>
+          <span>•</span>
+          <a href="#" class="hover:text-white transition">Keamanan Sistem</a>
+          <span>•</span>
+          <span class="inline-flex items-center gap-1.5 text-emerald-400 font-medium">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Status Server (99.9% Uptime)
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
