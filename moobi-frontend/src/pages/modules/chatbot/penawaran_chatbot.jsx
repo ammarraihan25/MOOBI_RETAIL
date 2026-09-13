@@ -1,0 +1,164 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+export default function PenawaranChatbot() {
+  return (
+    <div className="w-full bg-[#faf8ff] pb-24">
+      {/* HERO SECTION PENAWARAN */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#faf5ff] via-white to-[#faf8ff] pt-12 pb-16 border-b border-slate-200">
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16">
+          <div className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">
+            <Link to="/" className="hover:text-purple-600 transition-colors">Home</Link>
+            <span>/</span>
+            <Link to="/product" className="hover:text-purple-600 transition-colors">Produk &amp; Solusi</Link>
+            <span>/</span>
+            <span className="text-[#7e37c7]">Pilar 06 • Chatbot CRM Cerdas AI</span>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-50 border border-purple-200 text-[#7e37c7] text-xs font-extrabold uppercase">
+                <span className="w-2 h-2 rounded-full bg-[#7e37c7] animate-pulse"></span>
+                <span>PENAWARAN SOLUSI PILAR 06</span>
+              </div>
+              <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                Chatbot WhatsApp AI 24/7, <br className="hidden sm:inline" />
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#7e37c7] via-[#a855f7] to-[#0057cd]">
+                  Rekomendasi Produk &amp; Auto-Closing
+                </span>
+              </h1>
+              <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl">
+                Layani ribuan chat pelanggan serentak dalam hitungan detik. AI memahami pertanyaan natural dalam bahasa Indonesia, merekomendasikan produk relevan, dan memandu checkout sampai transfer lunas.
+              </p>
+
+              {/* ACTION BUTTONS */}
+              <div className="flex flex-wrap items-center gap-4 pt-2">
+                <Link
+                  to="/workspace/chatbot"
+                  className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl font-bold text-white bg-gradient-to-r from-[#7e37c7] to-[#a855f7] hover:from-[#6b21a8] hover:to-[#7e37c7] shadow-lg shadow-purple-500/25 transition-all text-sm sm:text-base active:scale-[0.98]"
+                >
+                  <span className="material-symbols-outlined text-[22px]">smart_toy</span>
+                  <span>Coba Live Chatbot Simulator</span>
+                  <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+                </Link>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 px-7 py-4 rounded-2xl font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 shadow-sm transition text-sm sm:text-base"
+                >
+                  <span className="material-symbols-outlined text-[20px] text-emerald-600">chat</span>
+                  <span>Konsultasi Integrasi WhatsApp API</span>
+                </Link>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 relative flex items-center justify-center">
+              <div className="w-full p-8 rounded-3xl bg-white border border-slate-200 shadow-xl space-y-6">
+                <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-2xl bg-[#7e37c7] text-white flex items-center justify-center font-bold shadow-md">
+                      <span className="material-symbols-outlined text-[24px]">chat</span>
+                    </div>
+                    <div>
+                      <h2 className="font-bold text-slate-900 text-lg">Modul Chatbot AI</h2>
+                      <span className="text-xs font-semibold text-purple-600 flex items-center gap-1">
+                        <span className="w-2 h-2 rounded-full bg-purple-500 inline-block"></span>
+                        Official WhatsApp Business API
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-100">
+                    <span className="material-symbols-outlined text-purple-600 text-[20px] mt-0.5">psychology</span>
+                    <div>
+                      <div className="text-xs font-bold text-slate-900">Natural Language Understanding (NLU)</div>
+                      <div className="text-[11px] text-slate-500">Paham bahasa gaul, singkatan, dan typo pembeli Indonesia dengan akurat.</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-100">
+                    <span className="material-symbols-outlined text-emerald-600 text-[20px] mt-0.5">point_of_sale</span>
+                    <div>
+                      <div className="text-xs font-bold text-slate-900">Closing Penjualan Mandiri</div>
+                      <div className="text-[11px] text-slate-500">Mampu membuatkan invoice tagihan dan tautan pembayaran langsung di chat.</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-100">
+                    <span className="material-symbols-outlined text-blue-600 text-[20px] mt-0.5">support_agent</span>
+                    <div>
+                      <div className="text-xs font-bold text-slate-900">Seamless Handover ke CS Manusia</div>
+                      <div className="text-[11px] text-slate-500">Jika ada kasus komplain kompleks, AI langsung meneruskan ke staf CS toko.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <Link
+                  to="/workspace/chatbot"
+                  className="w-full py-3.5 rounded-xl bg-purple-50 hover:bg-purple-100 text-[#7e37c7] font-bold text-sm text-center block transition-colors"
+                >
+                  Uji Coba Chat Interaktif →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* KEUNGGULAN CHATBOT */}
+      <section className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 mt-16 space-y-12">
+        <div className="text-center max-w-2xl mx-auto space-y-3">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">Jangan Biarkan Calon Pembeli Menunggu Terlalu Lama</h2>
+          <p className="text-slate-600 text-sm sm:text-base">Kecepatan respons chat di bawah 1 menit meningkatkan rasio closing hingga 78%.</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4">
+            <div className="w-12 h-12 rounded-2xl bg-purple-50 text-[#7e37c7] flex items-center justify-center font-bold">
+              <span className="material-symbols-outlined text-[24px]">speed</span>
+            </div>
+            <h3 className="text-lg font-bold text-slate-900">Respon Instan 24/7/365</h3>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Tetap melayani pelanggan di malam hari atau hari libur tanpa perlu membayar lembur staf CS.
+            </p>
+          </div>
+
+          <div className="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
+              <span className="material-symbols-outlined text-[24px]">inventory_2</span>
+            </div>
+            <h3 className="text-lg font-bold text-slate-900">Cek Stok Otomatis Real-Time</h3>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              AI otomatis mengecek ketersediaan varian warna dan ukuran langsung ke database tanpa jeda.
+            </p>
+          </div>
+
+          <div className="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4">
+            <div className="w-12 h-12 rounded-2xl bg-blue-50 text-[#0057cd] flex items-center justify-center font-bold">
+              <span className="material-symbols-outlined text-[24px]">badge</span>
+            </div>
+            <h3 className="text-lg font-bold text-slate-900">Centang Hijau Resmi (Green Tick)</h3>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Didukung integrasi resmi WhatsApp Cloud API Meta untuk keamanan nomor dan kredibilitas brand Anda.
+            </p>
+          </div>
+        </div>
+
+        {/* BOTTOM CTA BAR */}
+        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-[#7e37c7] via-[#a855f7] to-[#0057cd] text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+          <div className="space-y-1 text-center md:text-left">
+            <h3 className="text-xl sm:text-2xl font-black">Coba Simulator Live Chat AI Sekarang</h3>
+            <p className="text-white/80 text-xs sm:text-sm">Uji coba simulasi interaktif percakapan dengan AI Chatbot Moobi.</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
+            <Link to="/workspace/chatbot" className="px-6 py-3.5 rounded-xl bg-white text-[#7e37c7] font-bold text-sm hover:bg-slate-50 transition shadow-sm">
+              Buka Live Demo →
+            </Link>
+            <Link to="/contact" className="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-sm border border-white/20 transition">
+              Konsultasi AI Chatbot
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
